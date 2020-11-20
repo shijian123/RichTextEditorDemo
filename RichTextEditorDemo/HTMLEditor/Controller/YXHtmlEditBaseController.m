@@ -238,6 +238,18 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     return string;
 }
 
+/// 随机图片
+- (NSString *)imgUrlarc4random {
+    NSArray *urlArr = @[
+        @"http://pic.netbian.com/uploads/allimg/201022/223306-16033771862a23.jpg",
+        @"http://pic.netbian.com/uploads/allimg/201005/233421-16019120612203.jpg",
+        @"http://pic.netbian.com/uploads/allimg/200928/232118-1601306478450d.jpg",
+        @"http://pic.netbian.com/uploads/allimg/200207/202346-158107822608d3.jpg",
+        @"http://pic.netbian.com/uploads/allimg/190403/205325-1554296005906a.jpg"];
+    
+    return urlArr[arc4random()%5];
+}
+
 #pragma mark 键盘监听
 
 - (void)keyBoardWillShowFrame:(NSNotification *)notification {
@@ -480,8 +492,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
             //                        NSString *picUrl = datas;
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                NSString *picUrl =
-                @"http://pic27.nipic.com/20130225/4746571_081826094000_2.jpg";
+                NSString *picUrl = [self imgUrlarc4random];
                 [weakSelf.myWebView insertImageKey:fileM.key progress:1];
                 // BOOL error = false; //上传成功样式
                 [weakSelf.myWebView insertSuccessImageKey:fileM.key imgUrl:picUrl];
