@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MBProgressHUD (YX)
++ (void)showText:(NSString *)text;
 
 @end
 

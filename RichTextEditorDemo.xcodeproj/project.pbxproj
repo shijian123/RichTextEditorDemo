@@ -3,12 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24B67B316734B08C72DC933C /* Pods_RichTextEditorDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA915C7C594C9EA3B7782FC /* Pods_RichTextEditorDemo.framework */; };
 		31E5BD53256538BA00A259B8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BD52256538BA00A259B8 /* AppDelegate.m */; };
-		31E5BD56256538BA00A259B8 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BD55256538BA00A259B8 /* SceneDelegate.m */; };
 		31E5BD59256538BA00A259B8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BD58256538BA00A259B8 /* ViewController.m */; };
 		31E5BD5C256538BA00A259B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31E5BD5A256538BA00A259B8 /* Main.storyboard */; };
 		31E5BD5E256538BC00A259B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31E5BD5D256538BC00A259B8 /* Assets.xcassets */; };
@@ -16,6 +16,25 @@
 		31E5BD64256538BC00A259B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BD63256538BC00A259B8 /* main.m */; };
 		31E5BD6E256538BC00A259B8 /* RichTextEditorDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BD6D256538BC00A259B8 /* RichTextEditorDemoTests.m */; };
 		31E5BD79256538BC00A259B8 /* RichTextEditorDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BD78256538BC00A259B8 /* RichTextEditorDemoUITests.m */; };
+		31E5BD9725660A4500A259B8 /* YXHtmlEditBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BD9625660A4500A259B8 /* YXHtmlEditBaseController.m */; };
+		31E5BDA025660A8700A259B8 /* YXWKWebViewPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BD9F25660A8700A259B8 /* YXWKWebViewPool.m */; };
+		31E5BDA925660C0700A259B8 /* UIControl+YX.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BDA825660C0700A259B8 /* UIControl+YX.m */; };
+		31E5BDAF25660C6400A259B8 /* WKWebView+YXHideAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BDAE25660C6400A259B8 /* WKWebView+YXHideAccessoryView.m */; };
+		31E5BDB525660C9C00A259B8 /* WKWebView+YXWebViewJSTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BDB425660C9C00A259B8 /* WKWebView+YXWebViewJSTool.m */; };
+		31E5BDBC25660EFA00A259B8 /* YXHtmlEditorBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BDBB25660EFA00A259B8 /* YXHtmlEditorBar.m */; };
+		31E5BDC425660F1F00A259B8 /* YXHtmlEditorBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31E5BDC325660F1F00A259B8 /* YXHtmlEditorBar.xib */; };
+		31E5BDCE256610A800A259B8 /* jquery.js in Resources */ = {isa = PBXBuildFile; fileRef = 31E5BDC8256610A800A259B8 /* jquery.js */; };
+		31E5BDCF256610A800A259B8 /* richText_editor.html in Resources */ = {isa = PBXBuildFile; fileRef = 31E5BDC9256610A800A259B8 /* richText_editor.html */; };
+		31E5BDD0256610A800A259B8 /* normalize.css in Resources */ = {isa = PBXBuildFile; fileRef = 31E5BDCA256610A800A259B8 /* normalize.css */; };
+		31E5BDD1256610A800A259B8 /* article_editor.js in Resources */ = {isa = PBXBuildFile; fileRef = 31E5BDCB256610A800A259B8 /* article_editor.js */; };
+		31E5BDD2256610A800A259B8 /* icon_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 31E5BDCC256610A800A259B8 /* icon_refresh.png */; };
+		31E5BDD3256610A800A259B8 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 31E5BDCD256610A800A259B8 /* style.css */; };
+		31E5BDDC256610F200A259B8 /* YXHtmlFontStyleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BDDB256610F200A259B8 /* YXHtmlFontStyleBar.m */; };
+		31E5BDE52566179A00A259B8 /* YXHtmlUploadPictureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BDE42566179A00A259B8 /* YXHtmlUploadPictureModel.m */; };
+		31E5BE0625664F1A00A259B8 /* YXWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BE0525664F1A00A259B8 /* YXWKWebView.m */; };
+		31E5BE1225665D3C00A259B8 /* YXHtmlEditHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BE1125665D3C00A259B8 /* YXHtmlEditHeaderView.m */; };
+		31E5BE232566642E00A259B8 /* UIView+YX.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BE222566642E00A259B8 /* UIView+YX.m */; };
+		31E5BE3C256665D500A259B8 /* MBProgressHUD+YX.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BE3B256665D500A259B8 /* MBProgressHUD+YX.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +55,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		091CE115287A7FCEBC39CC88 /* Pods-RichTextEditorDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RichTextEditorDemo.debug.xcconfig"; path = "Target Support Files/Pods-RichTextEditorDemo/Pods-RichTextEditorDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		31E5BD4E256538BA00A259B8 /* RichTextEditorDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RichTextEditorDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E5BD51256538BA00A259B8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		31E5BD52256538BA00A259B8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		31E5BD54256538BA00A259B8 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		31E5BD55256538BA00A259B8 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		31E5BD57256538BA00A259B8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		31E5BD58256538BA00A259B8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		31E5BD5B256538BA00A259B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -54,6 +72,41 @@
 		31E5BD74256538BC00A259B8 /* RichTextEditorDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RichTextEditorDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31E5BD78256538BC00A259B8 /* RichTextEditorDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RichTextEditorDemoUITests.m; sourceTree = "<group>"; };
 		31E5BD7A256538BC00A259B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31E5BD9525660A4500A259B8 /* YXHtmlEditBaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHtmlEditBaseController.h; sourceTree = "<group>"; };
+		31E5BD9625660A4500A259B8 /* YXHtmlEditBaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHtmlEditBaseController.m; sourceTree = "<group>"; };
+		31E5BD9E25660A8700A259B8 /* YXWKWebViewPool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWKWebViewPool.h; sourceTree = "<group>"; };
+		31E5BD9F25660A8700A259B8 /* YXWKWebViewPool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXWKWebViewPool.m; sourceTree = "<group>"; };
+		31E5BDA725660C0700A259B8 /* UIControl+YX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+YX.h"; sourceTree = "<group>"; };
+		31E5BDA825660C0700A259B8 /* UIControl+YX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+YX.m"; sourceTree = "<group>"; };
+		31E5BDAD25660C6400A259B8 /* WKWebView+YXHideAccessoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebView+YXHideAccessoryView.h"; sourceTree = "<group>"; };
+		31E5BDAE25660C6400A259B8 /* WKWebView+YXHideAccessoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+YXHideAccessoryView.m"; sourceTree = "<group>"; };
+		31E5BDB325660C9C00A259B8 /* WKWebView+YXWebViewJSTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WKWebView+YXWebViewJSTool.h"; sourceTree = "<group>"; };
+		31E5BDB425660C9C00A259B8 /* WKWebView+YXWebViewJSTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WKWebView+YXWebViewJSTool.m"; sourceTree = "<group>"; };
+		31E5BDB925660E4600A259B8 /* YXHtmlCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHtmlCommon.h; sourceTree = "<group>"; };
+		31E5BDBA25660EFA00A259B8 /* YXHtmlEditorBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHtmlEditorBar.h; sourceTree = "<group>"; };
+		31E5BDBB25660EFA00A259B8 /* YXHtmlEditorBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHtmlEditorBar.m; sourceTree = "<group>"; };
+		31E5BDC325660F1F00A259B8 /* YXHtmlEditorBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXHtmlEditorBar.xib; sourceTree = "<group>"; };
+		31E5BDC8256610A800A259B8 /* jquery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.js; sourceTree = "<group>"; };
+		31E5BDC9256610A800A259B8 /* richText_editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = richText_editor.html; sourceTree = "<group>"; };
+		31E5BDCA256610A800A259B8 /* normalize.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = normalize.css; sourceTree = "<group>"; };
+		31E5BDCB256610A800A259B8 /* article_editor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = article_editor.js; sourceTree = "<group>"; };
+		31E5BDCC256610A800A259B8 /* icon_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_refresh.png; sourceTree = "<group>"; };
+		31E5BDCD256610A800A259B8 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		31E5BDDA256610F200A259B8 /* YXHtmlFontStyleBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHtmlFontStyleBar.h; sourceTree = "<group>"; };
+		31E5BDDB256610F200A259B8 /* YXHtmlFontStyleBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHtmlFontStyleBar.m; sourceTree = "<group>"; };
+		31E5BDE32566179A00A259B8 /* YXHtmlUploadPictureModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHtmlUploadPictureModel.h; sourceTree = "<group>"; };
+		31E5BDE42566179A00A259B8 /* YXHtmlUploadPictureModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHtmlUploadPictureModel.m; sourceTree = "<group>"; };
+		31E5BE0425664F1A00A259B8 /* YXWKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXWKWebView.h; sourceTree = "<group>"; };
+		31E5BE0525664F1A00A259B8 /* YXWKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXWKWebView.m; sourceTree = "<group>"; };
+		31E5BE1025665D3C00A259B8 /* YXHtmlEditHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHtmlEditHeaderView.h; sourceTree = "<group>"; };
+		31E5BE1125665D3C00A259B8 /* YXHtmlEditHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHtmlEditHeaderView.m; sourceTree = "<group>"; };
+		31E5BE19256661BB00A259B8 /* richTextEditor.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = richTextEditor.pch; sourceTree = "<group>"; };
+		31E5BE212566642E00A259B8 /* UIView+YX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+YX.h"; sourceTree = "<group>"; };
+		31E5BE222566642E00A259B8 /* UIView+YX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+YX.m"; sourceTree = "<group>"; };
+		31E5BE3A256665D500A259B8 /* MBProgressHUD+YX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+YX.h"; sourceTree = "<group>"; };
+		31E5BE3B256665D500A259B8 /* MBProgressHUD+YX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+YX.m"; sourceTree = "<group>"; };
+		3CA915C7C594C9EA3B7782FC /* Pods_RichTextEditorDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RichTextEditorDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC0FDC2562509EA89C231BA0 /* Pods-RichTextEditorDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RichTextEditorDemo.release.xcconfig"; path = "Target Support Files/Pods-RichTextEditorDemo/Pods-RichTextEditorDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24B67B316734B08C72DC933C /* Pods_RichTextEditorDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +135,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1CBDD4B54C890243A2D8CE4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3CA915C7C594C9EA3B7782FC /* Pods_RichTextEditorDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		31E5BD45256538BA00A259B8 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +150,8 @@
 				31E5BD6C256538BC00A259B8 /* RichTextEditorDemoTests */,
 				31E5BD77256538BC00A259B8 /* RichTextEditorDemoUITests */,
 				31E5BD4F256538BA00A259B8 /* Products */,
+				CD88F38F08DF6653D1F01A11 /* Pods */,
+				1CBDD4B54C890243A2D8CE4E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,15 +170,18 @@
 			children = (
 				31E5BD51256538BA00A259B8 /* AppDelegate.h */,
 				31E5BD52256538BA00A259B8 /* AppDelegate.m */,
-				31E5BD54256538BA00A259B8 /* SceneDelegate.h */,
-				31E5BD55256538BA00A259B8 /* SceneDelegate.m */,
 				31E5BD57256538BA00A259B8 /* ViewController.h */,
 				31E5BD58256538BA00A259B8 /* ViewController.m */,
+				31E5BE1025665D3C00A259B8 /* YXHtmlEditHeaderView.h */,
+				31E5BE1125665D3C00A259B8 /* YXHtmlEditHeaderView.m */,
+				31E5BE202566641600A259B8 /* Category */,
+				31E5BD892566074900A259B8 /* HTMLEditor */,
 				31E5BD5A256538BA00A259B8 /* Main.storyboard */,
 				31E5BD5D256538BC00A259B8 /* Assets.xcassets */,
 				31E5BD5F256538BC00A259B8 /* LaunchScreen.storyboard */,
 				31E5BD62256538BC00A259B8 /* Info.plist */,
 				31E5BD63256538BC00A259B8 /* main.m */,
+				31E5BE19256661BB00A259B8 /* richTextEditor.pch */,
 			);
 			path = RichTextEditorDemo;
 			sourceTree = "<group>";
@@ -137,6 +204,99 @@
 			path = RichTextEditorDemoUITests;
 			sourceTree = "<group>";
 		};
+		31E5BD892566074900A259B8 /* HTMLEditor */ = {
+			isa = PBXGroup;
+			children = (
+				31E5BD8D256607AC00A259B8 /* Controller */,
+				31E5BD8E256607B800A259B8 /* Tool */,
+				31E5BD8C2566079800A259B8 /* Sources */,
+				31E5BD8B2566078E00A259B8 /* View */,
+				31E5BD8A2566078400A259B8 /* Model */,
+			);
+			path = HTMLEditor;
+			sourceTree = "<group>";
+		};
+		31E5BD8A2566078400A259B8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				31E5BD9E25660A8700A259B8 /* YXWKWebViewPool.h */,
+				31E5BD9F25660A8700A259B8 /* YXWKWebViewPool.m */,
+				31E5BDE32566179A00A259B8 /* YXHtmlUploadPictureModel.h */,
+				31E5BDE42566179A00A259B8 /* YXHtmlUploadPictureModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		31E5BD8B2566078E00A259B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				31E5BE0425664F1A00A259B8 /* YXWKWebView.h */,
+				31E5BE0525664F1A00A259B8 /* YXWKWebView.m */,
+				31E5BDBA25660EFA00A259B8 /* YXHtmlEditorBar.h */,
+				31E5BDBB25660EFA00A259B8 /* YXHtmlEditorBar.m */,
+				31E5BDC325660F1F00A259B8 /* YXHtmlEditorBar.xib */,
+				31E5BDDA256610F200A259B8 /* YXHtmlFontStyleBar.h */,
+				31E5BDDB256610F200A259B8 /* YXHtmlFontStyleBar.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		31E5BD8C2566079800A259B8 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				31E5BDCB256610A800A259B8 /* article_editor.js */,
+				31E5BDCC256610A800A259B8 /* icon_refresh.png */,
+				31E5BDC8256610A800A259B8 /* jquery.js */,
+				31E5BDCA256610A800A259B8 /* normalize.css */,
+				31E5BDC9256610A800A259B8 /* richText_editor.html */,
+				31E5BDCD256610A800A259B8 /* style.css */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		31E5BD8D256607AC00A259B8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				31E5BD9525660A4500A259B8 /* YXHtmlEditBaseController.h */,
+				31E5BD9625660A4500A259B8 /* YXHtmlEditBaseController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		31E5BD8E256607B800A259B8 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				31E5BDA725660C0700A259B8 /* UIControl+YX.h */,
+				31E5BDA825660C0700A259B8 /* UIControl+YX.m */,
+				31E5BDAD25660C6400A259B8 /* WKWebView+YXHideAccessoryView.h */,
+				31E5BDAE25660C6400A259B8 /* WKWebView+YXHideAccessoryView.m */,
+				31E5BDB325660C9C00A259B8 /* WKWebView+YXWebViewJSTool.h */,
+				31E5BDB425660C9C00A259B8 /* WKWebView+YXWebViewJSTool.m */,
+				31E5BDB925660E4600A259B8 /* YXHtmlCommon.h */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		31E5BE202566641600A259B8 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				31E5BE212566642E00A259B8 /* UIView+YX.h */,
+				31E5BE222566642E00A259B8 /* UIView+YX.m */,
+				31E5BE3A256665D500A259B8 /* MBProgressHUD+YX.h */,
+				31E5BE3B256665D500A259B8 /* MBProgressHUD+YX.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		CD88F38F08DF6653D1F01A11 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				091CE115287A7FCEBC39CC88 /* Pods-RichTextEditorDemo.debug.xcconfig */,
+				DC0FDC2562509EA89C231BA0 /* Pods-RichTextEditorDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,9 +304,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31E5BD7D256538BC00A259B8 /* Build configuration list for PBXNativeTarget "RichTextEditorDemo" */;
 			buildPhases = (
+				1A18E83741E72441538ECA71 /* [CP] Check Pods Manifest.lock */,
 				31E5BD4A256538BA00A259B8 /* Sources */,
 				31E5BD4B256538BA00A259B8 /* Frameworks */,
 				31E5BD4C256538BA00A259B8 /* Resources */,
+				A92C77DB3202E7D6D0CE36B5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -199,6 +361,7 @@
 		31E5BD46256538BA00A259B8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = YX;
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					31E5BD4D256538BA00A259B8 = {
@@ -239,9 +402,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31E5BDCF256610A800A259B8 /* richText_editor.html in Resources */,
+				31E5BDCE256610A800A259B8 /* jquery.js in Resources */,
 				31E5BD61256538BC00A259B8 /* LaunchScreen.storyboard in Resources */,
 				31E5BD5E256538BC00A259B8 /* Assets.xcassets in Resources */,
+				31E5BDC425660F1F00A259B8 /* YXHtmlEditorBar.xib in Resources */,
 				31E5BD5C256538BA00A259B8 /* Main.storyboard in Resources */,
+				31E5BDD1256610A800A259B8 /* article_editor.js in Resources */,
+				31E5BDD3256610A800A259B8 /* style.css in Resources */,
+				31E5BDD0256610A800A259B8 /* normalize.css in Resources */,
+				31E5BDD2256610A800A259B8 /* icon_refresh.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,15 +431,68 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1A18E83741E72441538ECA71 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RichTextEditorDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A92C77DB3202E7D6D0CE36B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RichTextEditorDemo/Pods-RichTextEditorDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RichTextEditorDemo/Pods-RichTextEditorDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RichTextEditorDemo/Pods-RichTextEditorDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		31E5BD4A256538BA00A259B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31E5BE1225665D3C00A259B8 /* YXHtmlEditHeaderView.m in Sources */,
+				31E5BE3C256665D500A259B8 /* MBProgressHUD+YX.m in Sources */,
 				31E5BD59256538BA00A259B8 /* ViewController.m in Sources */,
+				31E5BD9725660A4500A259B8 /* YXHtmlEditBaseController.m in Sources */,
+				31E5BDAF25660C6400A259B8 /* WKWebView+YXHideAccessoryView.m in Sources */,
+				31E5BDA025660A8700A259B8 /* YXWKWebViewPool.m in Sources */,
+				31E5BE0625664F1A00A259B8 /* YXWKWebView.m in Sources */,
+				31E5BDA925660C0700A259B8 /* UIControl+YX.m in Sources */,
+				31E5BE232566642E00A259B8 /* UIView+YX.m in Sources */,
+				31E5BDE52566179A00A259B8 /* YXHtmlUploadPictureModel.m in Sources */,
 				31E5BD53256538BA00A259B8 /* AppDelegate.m in Sources */,
+				31E5BDBC25660EFA00A259B8 /* YXHtmlEditorBar.m in Sources */,
 				31E5BD64256538BC00A259B8 /* main.m in Sources */,
-				31E5BD56256538BA00A259B8 /* SceneDelegate.m in Sources */,
+				31E5BDDC256610F200A259B8 /* YXHtmlFontStyleBar.m in Sources */,
+				31E5BDB525660C9C00A259B8 /* WKWebView+YXWebViewJSTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,12 +661,15 @@
 		};
 		31E5BD7E256538BC00A259B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 091CE115287A7FCEBC39CC88 /* Pods-RichTextEditorDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3V68Z8G5A8;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/RichTextEditorDemo/richTextEditor.pch";
 				INFOPLIST_FILE = RichTextEditorDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -456,12 +682,15 @@
 		};
 		31E5BD7F256538BC00A259B8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DC0FDC2562509EA89C231BA0 /* Pods-RichTextEditorDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3V68Z8G5A8;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/RichTextEditorDemo/richTextEditor.pch";
 				INFOPLIST_FILE = RichTextEditorDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

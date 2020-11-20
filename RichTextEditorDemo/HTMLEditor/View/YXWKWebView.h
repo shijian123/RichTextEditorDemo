@@ -10,8 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXWKWebView : WKWebView
-@property (nonatomic) UIView *_Null_unspecified headerView;
-@property (nonatomic) UIView *_Null_unspecified footerView;
+@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UIView *footerView;
 
 /// 在代理方法 (webView: didStartProvisionalNavigation:) 优先中调用
 -(void)setupHeaderViewForWebView:(YXWKWebView *)webView;

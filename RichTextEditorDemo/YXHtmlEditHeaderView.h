@@ -10,6 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXHtmlEditHeaderView : UIView
+@property (nonatomic) void(^selectTagsBlock)(void);
+@property (nonatomic, strong) UITextField *titleTF;
 
 @end
 
