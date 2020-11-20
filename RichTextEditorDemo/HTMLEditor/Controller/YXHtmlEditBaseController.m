@@ -171,6 +171,25 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     return SCREEN_HEIGHT - keyBH - SCREEN_Y - datH - YXEditHeaderViewH;
 }
 
+//获取IMG标签
+- (NSArray *)getImgTags:(NSString *)htmlText {
+    if (htmlText == nil) {
+        return nil;
+    }
+    NSError *error;
+    NSString *regulaStr = @"<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>";
+    NSRegularExpression *regex = [NSRegularExpression
+                                  regularExpressionWithPattern:regulaStr
+                                  options:NSRegularExpressionCaseInsensitive
+                                  error:&error];
+    NSArray *arrayOfAllMatches =
+    [regex matchesInString:htmlText
+                   options:0
+                     range:NSMakeRange(0, [htmlText length])];
+    
+    return arrayOfAllMatches;
+}
+
 /// 正则匹配
 - (NSArray *)matchString:(NSString *)string toRegexString:(NSString *)regexStr {
     NSRegularExpression *regex = [NSRegularExpression
@@ -420,9 +439,11 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 
 /// MARK:上传图片
 - (void)showPhotoPicker{
-    self.imagePickerVc.allowPickingVideo = NO;
+    TZImagePickerController *imagePicker = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:nil];
+    imagePicker.showSelectBtn = NO;
+    imagePicker.allowPickingVideo = NO;
     WS(weakSelf)
-    [self.imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+    [imagePicker setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         
         for (UIImage *selImg in photos) {
             YXHtmlUploadPictureModel *fileM = [YXHtmlUploadPictureModel new];
@@ -434,7 +455,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
             
 #warning 插入图片，待解决插入视频
             // 1、插入本地图片
-            [weakSelf.myWebView insertImage:fileM.imageData key:fileM.key];
+//            [weakSelf.myWebView insertImage:fileM.imageData key:fileM.key];
             
             // 2、模拟网络请求上传图片 更新进度
             [weakSelf.myWebView insertImageKey:fileM.key progress:0.5];
@@ -505,7 +526,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
         
     }];
          
-    [self presentViewController:self.imagePickerVc animated:YES completion:nil];
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
 
@@ -627,25 +648,6 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     }
     
     NSLog(@"scrollView.contentOffset.y :%.f", scrollView.contentOffset.y );
-}
-
-//获取IMG标签
-- (NSArray *)getImgTags:(NSString *)htmlText {
-    if (htmlText == nil) {
-        return nil;
-    }
-    NSError *error;
-    NSString *regulaStr = @"<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>";
-    NSRegularExpression *regex = [NSRegularExpression
-                                  regularExpressionWithPattern:regulaStr
-                                  options:NSRegularExpressionCaseInsensitive
-                                  error:&error];
-    NSArray *arrayOfAllMatches =
-    [regex matchesInString:htmlText
-                   options:0
-                     range:NSMakeRange(0, [htmlText length])];
-    
-    return arrayOfAllMatches;
 }
 
 ///**
@@ -879,13 +881,13 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     return _myWebView;
 }
 
-- (TZImagePickerController *)imagePickerVc{
-    if (_imagePickerVc == nil) {
-        _imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:nil];
-        _imagePickerVc.showSelectBtn = NO;
-    }
-    return _imagePickerVc;
-}
+//- (TZImagePickerController *)imagePickerVc{
+//    if (_imagePickerVc == nil) {
+//        _imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:nil];
+//        _imagePickerVc.showSelectBtn = NO;
+//    }
+//    return _imagePickerVc;
+//}
 
 @end
 
@@ -894,6 +896,5 @@ UIAlertViewDelegate,UIScrollViewDelegate>
  1、输入时 scrollView 随输入文案改变
  2、键盘显示时，焦点的获取，只处理div的键盘
  3、视频的添加
- 4、网络加载后，替换本地图片偶尔异常
  
  */

@@ -404,7 +404,6 @@ RE.enabledEditingItems = function() {
     
     //    window.location.href = "re-state-content-change://";
     
-    
     var fontSizeblock = document.queryCommandValue('fontSize');
     if (fontSizeblock.length > 0) {
         items.push(fontSizeblock);
@@ -461,9 +460,8 @@ RE.enabledEditingItems = function() {
         items.push(formatBlock);
     }
     
-    
     if (items.length > 0) {
-        window.location.href = "re-state-content://" + encodeURI(items.join(','));
+//        window.location.href = "re-state-content://" + encodeURI(items.join(','));
         window.location.href = "re-state-content://" + encodeURI(items.join(','));
     } else {
         window.location.href = "re-state-content://";
@@ -632,7 +630,6 @@ RE.insertSuccessReplaceImg2 =function(imgId,imgUrl,delImageData){
     var imgStr = '<div class="real-img-f-div" contenteditable="false" id="'+imgId+'-img" >' +
     '<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">' +
     '<img id="'+imgId+'-delImg" src="data:image/png;base64,'+ delImageData +'" class="real-img-delete" />' + '</div>';
-    
     
     $("#"+imgId).after(imgStr);
     $("#"+imgId).remove();
