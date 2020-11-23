@@ -661,7 +661,7 @@ RE.insertSuccessReplaceImg2 =function(imgId,imgUrl,delImageData){
     //    contenteditable="false" 禁止图片区域获取光标
     //+ '<div id="back-img-text" class="back-img-text">图片描述</div>'
     // style="display:none"
-    var imgStr ='<br />'+'<div class="real-img-f-div" contenteditable="false" id="'+imgId+'-img" >' +
+    var imgStr = '<div class="real-img-f-div" contenteditable="false" id="'+imgId+'-img" >' +
     '<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">' +
     '<img id="'+imgId+'-delImg" src="data:image/png;base64,'+ delImageData +'" class="real-img-delete" />' + '</div>'+'<br />';
     

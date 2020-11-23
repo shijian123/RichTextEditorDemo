@@ -7,7 +7,7 @@
 
 #import "YXShowHTMLController.h"
 #import <WebKit/WebKit.h>
-@interface YXShowHTMLController ()<WKNavigationDelegate>
+@interface YXShowHTMLController ()
 @property (nonatomic, strong) WKWebView *myWebView;
 
 @end
@@ -18,18 +18,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.myWebView];
-    [self.myWebView loadHTMLString:self.htmlStr baseURL:nil];
-}
-
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    NSString *injectionJSString = @"document.getElementsByName(\"viewport\")[0].content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no\";";
-    [webView evaluateJavaScript:injectionJSString completionHandler:nil];
+    NSString *headerStr = @"<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{max-width:100%}</style></header>";
+    [self.myWebView loadHTMLString:[NSString stringWithFormat:@"%@%@", headerStr, self.htmlStr] baseURL:nil];
 }
 
 - (WKWebView *)myWebView {
     if (_myWebView == nil) {
         _myWebView = [[WKWebView alloc] initWithFrame:self.view.bounds];
-        _myWebView.navigationDelegate = self;
     }
     return _myWebView;
 }

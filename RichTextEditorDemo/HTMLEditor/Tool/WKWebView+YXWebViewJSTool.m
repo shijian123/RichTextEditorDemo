@@ -145,6 +145,11 @@
     [self evaluateJavaScript:@"RE.setNumbers();" completionHandler:nil];
 }
 
+- (void)insertHTML:(NSString *)htmlStr {
+    NSString *trigger= [NSString stringWithFormat:@"RE.insertHTML(\"%@\");",htmlStr];
+    [self evaluateJavaScript:trigger completionHandler:nil];
+}
+
 - (void)insertLinkUrl:(NSString *)url title:(NSString*)title content:(NSString *)content{
     NSString *trigger= [NSString stringWithFormat:@"RE.insertLink(\"%@\", \"%@\",\"%@\",);",url,title,content];
     [self evaluateJavaScript:trigger completionHandler:nil];

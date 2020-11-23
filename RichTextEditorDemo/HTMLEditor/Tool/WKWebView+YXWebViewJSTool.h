@@ -40,6 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param content 内容
  */
 - (void)setupContent:(NSString *)content;
+/**
+ *  添加html
+ */
+- (void)insertHTML:(NSString *)htmlStr;
 
 /**
  :初始化文章

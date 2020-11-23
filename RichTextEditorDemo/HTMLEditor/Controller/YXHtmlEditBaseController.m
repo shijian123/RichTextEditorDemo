@@ -477,6 +477,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
         
         [self.view endEditing:YES];
         
+        [self.myWebView insertHTML:@"<br>"];
         for (UIImage *selImg in photos) {
             YXHtmlUploadPictureModel *fileM = [YXHtmlUploadPictureModel new];
             fileM.imageData = UIImageJPEGRepresentation(selImg,0.8f);
