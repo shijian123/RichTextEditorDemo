@@ -288,8 +288,16 @@
 
 
 - (void)setupEditEnable:(BOOL)enable {
+    
+    if ([YXUserDefaults boolForKey:@"YXKeyboardIsVisible"] && enable) {// 键盘已经出现时不在此弹出
+        return;
+    }
+#warning 暂时不收键盘
+    NSLog(@"setupEditEnable");
+    [self evaluateJavaScript:@"RE.canFocus(true);" completionHandler:nil];
+
     //可编辑
-    [self evaluateJavaScript:enable ? @"RE.canFocus(true);" : @"RE.canFocus(false);" completionHandler:nil];
+//    [self evaluateJavaScript:enable ? @"RE.canFocus(true);" : @"RE.canFocus(false);" completionHandler:nil];
 }
 
 - (void)setupContentDisable:(BOOL)disable{

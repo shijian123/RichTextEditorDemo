@@ -6,10 +6,13 @@
 //
 
 #import <WebKit/WebKit.h>
+#import "YXHtmlEditorBar.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXWKWebView : WKWebView
+@property (nonatomic, strong) YXHtmlEditorBar *accessoryView;
+
 @property (nonatomic, strong) UIView *headerView;
 @property (nonatomic, strong) UIView *footerView;
 

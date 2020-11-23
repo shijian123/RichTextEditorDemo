@@ -12,6 +12,8 @@
 #import "MBProgressHUD+YX.h"
 
 
+#define YXUserDefaults [NSUserDefaults standardUserDefaults]
+
 #define MainScreenSize [UIScreen mainScreen].bounds.size
 #define MainScreenWidth MainScreenSize.width
 #define MainScreenHeight MainScreenSize.height

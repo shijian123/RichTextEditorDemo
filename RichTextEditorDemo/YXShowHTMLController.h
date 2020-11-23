@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXShowHTMLController : UIViewController
+@property (nonatomic, copy) NSString *htmlStr;
 
 @end
 

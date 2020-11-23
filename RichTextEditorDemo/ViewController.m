@@ -20,7 +20,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     UILabel *text = [[UILabel alloc] initWithFrame:self.view.bounds];
     text.textAlignment = 1;
-    text.text = @"开始编辑文章";
+    text.text = @"开始编辑贴子";
     [self.view addSubview:text];
 }
 

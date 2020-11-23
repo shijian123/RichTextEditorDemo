@@ -80,6 +80,12 @@
 #pragma mark - delegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    NSLog(@"textFieldShouldBeginEditing");
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    NSLog(@"textFieldShouldEndEditing");
     return YES;
 }
 

@@ -56,8 +56,7 @@ static Class hackishFixClass = Nil;
     
     if (value) {
         object_setClass(browserView, hackishFixClass);
-    }
-    else {
+    }else {
         Class normalClass = objc_getClass("WKContentView");
         object_setClass(browserView, normalClass);
     }

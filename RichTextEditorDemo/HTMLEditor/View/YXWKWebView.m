@@ -10,7 +10,7 @@
 @interface YXWKWebView ()<WKNavigationDelegate>{
     BOOL alreadyShowHeader;
 }
-@property (nonatomic,strong) WKWebView *webView;
+@property (nonatomic, strong) WKWebView *webView;
 
 @end
 
@@ -81,6 +81,17 @@
             }];
         });
     }
+}
+
+- (__kindof UIView *)inputAccessoryView {
+    return self.accessoryView;
+}
+
+- (YXHtmlEditorBar *)accessoryView {
+    if (_accessoryView == nil) {
+        _accessoryView = [[NSBundle mainBundle] loadNibNamed:@"YXHtmlEditorBar" owner:self options:nil].firstObject;
+    }
+    return _accessoryView;
 }
 
 @end

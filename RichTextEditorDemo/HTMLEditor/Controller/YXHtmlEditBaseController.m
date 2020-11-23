@@ -11,6 +11,7 @@
 #import "WKWebView+YXHideAccessoryView.h"
 #import "YXHtmlEditHeaderView.h"
 #import "TZImagePickerController.h"
+#import "YXShowHTMLController.h"
 
 #define YXHtmlEditorURL @"richText_editor"
 #define YXEditHeaderViewH 100
@@ -47,11 +48,10 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"文章编辑";
-
     self.view.backgroundColor = [UIColor whiteColor];
     /// config
     [self.view addSubview:self.myWebView];
-    [self.view addSubview:self.toolBarView];
+//    [self.view addSubview:self.toolBarView];
     [[NSNotificationCenter defaultCenter]
      addObserver:self
      selector:@selector(keyBoardWillShowFrame:)
@@ -67,7 +67,9 @@ UIAlertViewDelegate,UIScrollViewDelegate>
      selector:@selector(keyBoardWillHideFrame:)
      name:UIKeyboardWillHideNotification
      object:nil];
-    self.toolBarView.delegate = self;
+    
+    
+//    self.toolBarView.delegate = self;
     [self.toolBarView
      addObserver:self
      forKeyPath:@"transform"
@@ -75,7 +77,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
      context:nil];
     
     self.navigationItem.rightBarButtonItem =
-    [[UIBarButtonItem alloc] initWithTitle:@"HTML"
+    [[UIBarButtonItem alloc] initWithTitle:@"发布"
                                      style:UIBarButtonItemStylePlain
                                     target:self
                                     action:@selector(exportHTMLTextMethod)];
@@ -162,6 +164,10 @@ UIAlertViewDelegate,UIScrollViewDelegate>
         }
         //导出结果
         NSLog(@"%@", htmlStr);
+        YXShowHTMLController *vc = [[YXShowHTMLController alloc] init];
+        vc.title = @"贴子详情";
+        vc.htmlStr = htmlStr;
+        [self.navigationController pushViewController:vc animated:YES];
     }];
 }
 
@@ -255,19 +261,28 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 - (void)keyBoardWillShowFrame:(NSNotification *)notification {
     self.fontBar.hidden = NO;
     self.toolBarView.hidden = NO;
+    [YXUserDefaults setBool:YES forKey:@"YXKeyboardIsVisible"];
+
     //重新定位光标位置
-    WS(weakSelf)
-    [self.myWebView getCaretYPositionHandler:^(NSString *numStr) {
-        CGFloat num = [numStr floatValue];
-        CGFloat editKeyboardH = [weakSelf editKeyboardHeight];
-        NSLog(@"***********************:%.f", num);
-        [weakSelf.myWebView autoScrollTop:num - editKeyboardH];
-    }];
+//    WS(weakSelf)
+//    [self.myWebView getCaretYPositionHandler:^(NSString *numStr) {
+//        UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+//        UIView *firstResponder = [keyWindow performSelector:@selector(firstResponder)];
+//
+//        if ([firstResponder isKindOfClass:[UITextField class]]) {
+//            return;
+//        }
+//        CGFloat num = [numStr floatValue];
+//        CGFloat editKeyboardH = [weakSelf editKeyboardHeight];
+//        NSLog(@"***********************:%.f", num);
+//        [weakSelf.myWebView autoScrollTop:num - editKeyboardH];
+//    }];
 }
 
 - (void)keyBoardWillHideFrame:(NSNotification *)notification {
     self.fontBar.hidden = YES;
     self.toolBarView.hidden = YES;
+    [YXUserDefaults setBool:NO forKey:@"YXKeyboardIsVisible"];
 }
 
 - (void)keyBoardWillChangeFrame:(NSNotification *)notification {
@@ -320,12 +335,12 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 
 - (void)handleEvent:(NSString *)urlString {
     if ([urlString hasPrefix:@"re-state-content://"]) {
-        WS(weakSelf)
-        [self.myWebView contentTextHandler:^(NSString *textStr) {
-            if (textStr.length <= 0) {
-                [weakSelf.myWebView.scrollView setContentOffset:CGPointMake(0, YXEditHeaderViewH) animated:YES];
-            }
-        }];
+//        WS(weakSelf)
+//        [self.myWebView contentTextHandler:^(NSString *textStr) {
+//            if (textStr.length <= 0) {
+//                [weakSelf.myWebView.scrollView setContentOffset:CGPointMake(0, YXEditHeaderViewH) animated:YES];
+//            }
+//        }];
     }
     
     if ([urlString hasPrefix:@"re-state-title://"]) {
@@ -342,20 +357,23 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     NSString *preStr = @"protocol://iOS?code=uploadResult&data=";
     
     if ([urlString hasPrefix:preStr]) {
-        
+         
         [self.view endEditing:YES];
-        
+
         NSString *result =
         [urlString stringByReplacingOccurrencesOfString:preStr withString:@" "];
-        
         NSString *jsonString = [result
                                 stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
         NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
         NSError *err;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData
                                         options:NSJSONReadingMutableContainers
                                           error:&err];
+        // 点击图片暂处理
+        if ([dict[@"imgId"] isEqualToString:@"YXClickImgAction"]) {
+            return YES;
+        }
+        
         NSString *meg = [NSString stringWithFormat:@"上传的图片ID为%@", dict[@"imgId"]];
         
         UIAlertController *alert = [UIAlertController
@@ -457,17 +475,17 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     WS(weakSelf)
     [imagePicker setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
         
+        [self.view endEditing:YES];
+        
         for (UIImage *selImg in photos) {
             YXHtmlUploadPictureModel *fileM = [YXHtmlUploadPictureModel new];
             fileM.imageData = UIImageJPEGRepresentation(selImg,0.8f);
             fileM.key = [NSString uuid];
             [weakSelf.uploadPics addObject:fileM];
             
-            [weakSelf.myWebView insertImage:fileM.imageData key:fileM.key];
-            
 #warning 插入图片，待解决插入视频
             // 1、插入本地图片
-//            [weakSelf.myWebView insertImage:fileM.imageData key:fileM.key];
+            [weakSelf.myWebView insertImage:fileM.imageData key:fileM.key];
             
             // 2、模拟网络请求上传图片 更新进度
             [weakSelf.myWebView insertImageKey:fileM.key progress:0.5];
@@ -501,12 +519,16 @@ UIAlertViewDelegate,UIScrollViewDelegate>
                     [weakSelf.uploadPics removeObject:fileM];
                 }
                 [weakSelf.myWebView setupEditEnable:YES];  //恢复可编辑状态
-                //[self.myWebView showKeyboardContent];
-                [weakSelf.myWebView hiddenKeyboard];
             });
             
-            
         }
+        
+        // 添加图片后滑动到底部
+        WS(weakSelf)
+        [self.myWebView getCaretYPositionHandler:^(NSString *numStr) {
+            CGFloat num = [numStr floatValue];
+            [weakSelf.myWebView autoScrollTop:num];
+        }];
         
 //        [weakSelf.myWebView reload];
             //                }];        }
@@ -590,8 +612,10 @@ UIAlertViewDelegate,UIScrollViewDelegate>
              containsObject:@"unorderedList"]) {
             [self.myWebView clearContentPlaceholder];
         }
-        [self handleWithString:urlString];
+//        [self handleWithString:urlString];
         
+        [self.myWebView setupEditEnable:YES];  //恢复可编辑状态
+
         decisionHandler(WKNavigationActionPolicyCancel);
 
     }else if ([urlString rangeOfString:@"protocol://iOS?code=uploadResult"].location != NSNotFound){
@@ -657,8 +681,8 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     if (scrollView.contentOffset.y <= -YXEditHeaderViewH) {
         scrollView.contentOffset = CGPointMake(0, -YXEditHeaderViewH);
     }
-    
-    NSLog(@"scrollView.contentOffset.y :%.f", scrollView.contentOffset.y );
+
+//    NSLog(@"scrollView.contentOffset.y :%.f", scrollView.contentOffset.y );
 }
 
 ///**
@@ -878,14 +902,18 @@ UIAlertViewDelegate,UIScrollViewDelegate>
         _myWebView.navigationDelegate = self;
         NSString *path = [[NSBundle mainBundle] bundlePath];
         NSURL *baseURL = [NSURL fileURLWithPath:path];
-        NSString *htmlPath =
-        [[NSBundle mainBundle] pathForResource:YXHtmlEditorURL ofType:@"html"];
+        NSString *htmlPath = [[NSBundle mainBundle] pathForResource:YXHtmlEditorURL ofType:@"html"];
         NSString *htmlCont = [NSString stringWithContentsOfFile:htmlPath
                                                        encoding:NSUTF8StringEncoding
                                                           error:nil];
         [_myWebView loadHTMLString:htmlCont baseURL:baseURL];
-        _myWebView.scrollView.bounces = NO;
-        _myWebView.hidesInputAccessoryView = YES;
+        _myWebView.scrollView.alwaysBounceVertical = YES;
+        _myWebView.accessoryView.delegate = self;
+//        [_myWebView.accessoryView
+//         addObserver:self
+//         forKeyPath:@"transform"
+//         options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
+//         context:nil];
         _myWebView.scrollView.delegate = self;
         
     }
@@ -905,7 +933,6 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 
 /**
  1、输入时 scrollView 随输入文案改变
- 2、键盘显示时，焦点的获取，只处理div的键盘
  3、视频的添加
  
  */

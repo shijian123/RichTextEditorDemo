@@ -34,15 +34,15 @@ RE.editor = document.getElementById('article_content');
 document.addEventListener("selectionchange", function() { RE.backuprange(); });
 
 // Initializations
-RE.callback = function() {
+RE.callback = function(str) {
     //    window.location.href = "re-callback://" + encodeURI(RE.getHtml());
-    RE.enabledEditingItems();
+    RE.enabledEditingItems(str);
     
 }
 RE.touchCallback = function() {
     
-    RE.enabledEditingItems();
-    RE.enabledEditingItems();
+//    RE.enabledEditingItems();
+    RE.enabledEditingItems("touchCallback");
     
 }
 RE.removeAllP = function(){
@@ -363,7 +363,7 @@ RE.insertLinkTitle = function(url, title) {
         sel.removeAllRanges();
         sel.addRange(range);
     }
-    RE.callback();
+    RE.callback("urlStr:"+title);
 }
 
 RE.setTodo = function(text) {
@@ -399,7 +399,7 @@ RE.restorerange = function(){
     selection.addRange(range);
 }
 
-RE.enabledEditingItems = function() {
+RE.enabledEditingItems = function(inputStr) {
     var items = [];
     
     //    window.location.href = "re-state-content-change://";
@@ -462,7 +462,7 @@ RE.enabledEditingItems = function() {
     
     if (items.length > 0) {
 //        window.location.href = "re-state-content://" + encodeURI(items.join(','));
-        window.location.href = "re-state-content://" + encodeURI(items.join(','));
+        window.location.href = "re-state-content://" + encodeURI(items.join(','))+"_string:"+inputStr;
     } else {
         window.location.href = "re-state-content://";
     }
@@ -491,8 +491,13 @@ RE.removeFormat = function() {
 }
 
 // Event Listeners
-RE.editor.addEventListener("input", RE.callback);
+//RE.editor.addEventListener("input", RE.callback);
+RE.editor.addEventListener("input", function(e) {
+    RE.callback(e);
+})
+
 RE.article_title.addEventListener("input",RE.titleCallback);
+// keyup 事件在按键被释放的时候触发。
 RE.editor.addEventListener("keyup", function(e) {
                            var KEY_LEFT = 37, KEY_RIGHT = 39;
                            if (e.which == KEY_LEFT || e.which == KEY_RIGHT||e.which == 8 ||e.which == 13) {
@@ -546,8 +551,36 @@ RE.getCaretYPosition = function() {
     return topPosition;
 }
 
+/**
+ * 动画垂直滚动到页面指定位置
+ * @param { Number } currentY 当前位置
+ * @param { Number } targetY 目标位置
+ */
+function scrollAnimation(currentY, targetY) {
+  // 获取当前位置方法
+  // const currentY = document.documentElement.scrollTop || document.body.scrollTop
+
+  // 计算需要移动的距离
+  let needScrollTop = targetY - currentY
+  let _currentY = currentY
+  setTimeout(() => {
+    // 一次调用滑动帧数，每次调用会不一样
+    const dist = Math.ceil(needScrollTop / 10)
+    _currentY += dist
+    window.scrollTo(_currentY, currentY)
+    // 如果移动幅度小于十个像素，直接移动，否则递归调用，实现动画效果
+    if (needScrollTop > 10 || needScrollTop < -10) {
+      scrollAnimation(_currentY, targetY)
+    } else {
+      window.scrollTo(_currentY, targetY)
+    }
+  }, 1)
+}
+
 RE.autoScroll = function(topY){
-    window.scrollTo(0,topY);
+//    window.scrollTo(0,topY);
+       const currentY = document.documentElement.scrollTop || document.body.scrollTop
+      scrollAnimation(currentY, topY);
     
 }
 
@@ -556,7 +589,7 @@ RE.insertImageBase64String = function(imageData,imgId) {
     
     RE.restorerange();
     //        var html = '<div id="'+imgId+'" class="main-img-case loading"><div><img src="data:image/jpeg;base64,'+imageData+'" alt="'+imgId+'" /></div></div>';
-    var html='<br />'  + '<div  contenteditable="false" id="'+imgId+'" class="main-img-case loading" tabindex="0">'+
+    var html='<br />'  + '<div contenteditable="false" id="'+imgId+'" class="main-img-case loading" tabindex="0">'+
     '</div>'+ '<br />';
     
     RE.insertHTML(html);
@@ -625,11 +658,12 @@ RE.insertSuccessReplaceImg =function(imgId,imgUrl){
 //图片上传成功: 含有删除按钮
 RE.insertSuccessReplaceImg2 =function(imgId,imgUrl,delImageData){
     //    var imgStr='<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">'+'<br />';
-    //contenteditable="false" 禁止图片区域获取光标
+    //    contenteditable="false" 禁止图片区域获取光标
     //+ '<div id="back-img-text" class="back-img-text">图片描述</div>'
-    var imgStr = '<div class="real-img-f-div" contenteditable="false" id="'+imgId+'-img" >' +
+    // style="display:none"
+    var imgStr ='<br />'+'<div class="real-img-f-div" contenteditable="false" id="'+imgId+'-img" >' +
     '<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">' +
-    '<img id="'+imgId+'-delImg" src="data:image/png;base64,'+ delImageData +'" class="real-img-delete" />' + '</div>';
+    '<img id="'+imgId+'-delImg" src="data:image/png;base64,'+ delImageData +'" class="real-img-delete" />' + '</div>'+'<br />';
     
     $("#"+imgId).after(imgStr);
     $("#"+imgId).remove();
@@ -641,14 +675,14 @@ RE.insertSuccessReplaceImg2 =function(imgId,imgUrl,delImageData){
                                        flag = false;
                                        }, 50);
                             });
-//    $("#"+imgId+"-img").on("touchend",function(event){
-//                           if(flag==true){
-//                           return;
-//                           }
-//                           RE.canFocus(false);
-//                           RE.uploadOver(imgId);
-//                           event.stopPropagation();
-//                           });
+    $("#"+imgId+"-img").on("touchend",function(event){
+                           if(flag==true){
+                           return;
+                           }
+                           RE.canFocus(false);
+                           RE.uploadOver("YXClickImgAction");
+                           event.stopPropagation();
+                           });
     $("#"+imgId+"-delImg").on("touchend",function(event){
                            if(flag==true){
                            return;

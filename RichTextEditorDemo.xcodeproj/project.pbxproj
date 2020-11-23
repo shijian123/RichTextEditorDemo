@@ -35,6 +35,7 @@
 		31E5BE1225665D3C00A259B8 /* YXHtmlEditHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BE1125665D3C00A259B8 /* YXHtmlEditHeaderView.m */; };
 		31E5BE232566642E00A259B8 /* UIView+YX.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BE222566642E00A259B8 /* UIView+YX.m */; };
 		31E5BE3C256665D500A259B8 /* MBProgressHUD+YX.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BE3B256665D500A259B8 /* MBProgressHUD+YX.m */; };
+		31E5BEEB256BC3C000A259B8 /* YXShowHTMLController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BEEA256BC3C000A259B8 /* YXShowHTMLController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,8 @@
 		31E5BE222566642E00A259B8 /* UIView+YX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+YX.m"; sourceTree = "<group>"; };
 		31E5BE3A256665D500A259B8 /* MBProgressHUD+YX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+YX.h"; sourceTree = "<group>"; };
 		31E5BE3B256665D500A259B8 /* MBProgressHUD+YX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+YX.m"; sourceTree = "<group>"; };
+		31E5BEE9256BC3C000A259B8 /* YXShowHTMLController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXShowHTMLController.h; sourceTree = "<group>"; };
+		31E5BEEA256BC3C000A259B8 /* YXShowHTMLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXShowHTMLController.m; sourceTree = "<group>"; };
 		3CA915C7C594C9EA3B7782FC /* Pods_RichTextEditorDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RichTextEditorDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0FDC2562509EA89C231BA0 /* Pods-RichTextEditorDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RichTextEditorDemo.release.xcconfig"; path = "Target Support Files/Pods-RichTextEditorDemo/Pods-RichTextEditorDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -172,6 +175,8 @@
 				31E5BD52256538BA00A259B8 /* AppDelegate.m */,
 				31E5BD57256538BA00A259B8 /* ViewController.h */,
 				31E5BD58256538BA00A259B8 /* ViewController.m */,
+				31E5BEE9256BC3C000A259B8 /* YXShowHTMLController.h */,
+				31E5BEEA256BC3C000A259B8 /* YXShowHTMLController.m */,
 				31E5BE1025665D3C00A259B8 /* YXHtmlEditHeaderView.h */,
 				31E5BE1125665D3C00A259B8 /* YXHtmlEditHeaderView.m */,
 				31E5BE202566641600A259B8 /* Category */,
@@ -490,6 +495,7 @@
 				31E5BDE52566179A00A259B8 /* YXHtmlUploadPictureModel.m in Sources */,
 				31E5BD53256538BA00A259B8 /* AppDelegate.m in Sources */,
 				31E5BDBC25660EFA00A259B8 /* YXHtmlEditorBar.m in Sources */,
+				31E5BEEB256BC3C000A259B8 /* YXShowHTMLController.m in Sources */,
 				31E5BD64256538BC00A259B8 /* main.m in Sources */,
 				31E5BDDC256610F200A259B8 /* YXHtmlFontStyleBar.m in Sources */,
 				31E5BDB525660C9C00A259B8 /* WKWebView+YXWebViewJSTool.m in Sources */,
