@@ -21,8 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UIButton *imageBtn;
 @property (weak, nonatomic) IBOutlet UIButton *fontBtn;
-@property (weak, nonatomic) IBOutlet UIButton *undoBtn;
-@property (weak, nonatomic) IBOutlet UIButton *redoBtn;
+//@property (weak, nonatomic) IBOutlet UIButton *undoBtn;
+@property (weak, nonatomic) IBOutlet UIButton *videoBtn;
+
+@property (weak, nonatomic) IBOutlet UIButton *emojiBtn;
 @property (weak, nonatomic) IBOutlet UIButton *linkBtn;
 @property (weak, nonatomic) IBOutlet UIButton *keyboardBtn;
 

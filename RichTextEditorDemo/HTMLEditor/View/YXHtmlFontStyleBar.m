@@ -123,7 +123,6 @@
             }
         }
     }else if (button == self.heading3Item && self.heading3Item.selected) {
-        button.selected = !button.selected;
         self.heading1Item.selected = NO;
         self.heading2Item.selected = NO;
         //恢复默认字体
@@ -133,8 +132,9 @@
                 [self.delegate fontBarResetNormalFontSize];
             }
         }
+    }else {
+        button.selected = !button.selected;
     }
-    
     if ([self.delegate respondsToSelector:@selector(fontBar:didClickBtn:)]) {
         [self.delegate fontBar:self didClickBtn:button];
     }

@@ -654,13 +654,18 @@ font[size="4"]{
     padding: 0px;
     box-sizing: border-box;
 }
+.real-video {
+    width: 100%;
+    padding: 0px;
+    box-sizing: border-box;
+}
 
 .real-img-delete{
     width:30px;
     height:30px;
     position:absolute;
-    right:10px;
-    top:10px;
+    right:-5px;
+    top:-5px;
 }
 
 .real-img-f-div {

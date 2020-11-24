@@ -31,23 +31,28 @@
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IgB-I2-ouV" userLabel="font">
                     <rect key="frame" x="62.5" y="1" width="62.5" height="48"/>
                     <state key="normal" image="ziti"/>
+                    <state key="disabled" image="ziti"/>
                     <state key="selected" image="ziti_hover"/>
                     <connections>
                         <action selector="clickfontAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="tTm-Fu-q9D"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uq8-FT-NHM" userLabel="undo">
-                    <rect key="frame" x="125" y="1" width="62.5" height="48"/>
-                    <state key="normal" image="chexiao"/>
+                    <rect key="frame" x="125" y="5" width="62.5" height="48"/>
+                    <state key="normal" title="video">
+                        <color key="titleColor" systemColor="labelColor"/>
+                    </state>
                     <connections>
-                        <action selector="clickUndoAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="CFG-13-fr0"/>
+                        <action selector="clickVideoAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="pzz-cf-4WR"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zju-jP-KK4" userLabel="redo">
-                    <rect key="frame" x="187.5" y="1" width="62.5" height="48"/>
-                    <state key="normal" image="chongzuo"/>
+                    <rect key="frame" x="187.5" y="5" width="62.5" height="48"/>
+                    <state key="normal" title="emoji">
+                        <color key="titleColor" systemColor="labelColor"/>
+                    </state>
                     <connections>
-                        <action selector="clickRedoAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="P3t-2n-VVT"/>
+                        <action selector="clickEmojiAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="vZN-1a-Fza"/>
                     </connections>
                 </button>
                 <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNk-hD-zAN" userLabel="link">
@@ -99,24 +104,25 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="emojiBtn" destination="zju-jP-KK4" id="H9e-5A-TwA"/>
                 <outlet property="fontBtn" destination="IgB-I2-ouV" id="CUs-gm-f3e"/>
                 <outlet property="imageBtn" destination="cJC-E0-HdE" id="0QA-tK-QFk"/>
                 <outlet property="keyboardBtn" destination="1RY-SB-6WI" id="IHu-Z9-vAW"/>
                 <outlet property="linkBtn" destination="kNk-hD-zAN" id="dbY-YR-Jan"/>
-                <outlet property="redoBtn" destination="zju-jP-KK4" id="bCM-h1-GcA"/>
-                <outlet property="undoBtn" destination="uq8-FT-NHM" id="eEQ-Lx-dYW"/>
+                <outlet property="videoBtn" destination="uq8-FT-NHM" id="gaq-3e-GBY"/>
             </connections>
             <point key="canvasLocation" x="139" y="109"/>
         </view>
     </objects>
     <resources>
-        <image name="chexiao" width="20" height="20"/>
-        <image name="chongzuo" width="20" height="20"/>
         <image name="jianpanxia" width="20" height="20"/>
         <image name="lianjie" width="12" height="16"/>
         <image name="tupian" width="20" height="20"/>
         <image name="ziti" width="20" height="20"/>
         <image name="ziti_hover" width="20" height="20"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

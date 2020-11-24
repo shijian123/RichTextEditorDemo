@@ -18,8 +18,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.myWebView];
-    NSString *headerStr = @"<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{max-width:100%}</style></header>";
-    [self.myWebView loadHTMLString:[NSString stringWithFormat:@"%@%@", headerStr, self.htmlStr] baseURL:nil];
+//    NSString *headerStr = @"<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{max-width:100%}</style>  <title>XHTML Tag Reference</title></header>";
+//    [self.myWebView loadHTMLString:[NSString stringWithFormat:@"%@%@", headerStr, self.htmlStr] baseURL:nil];
+    
+    NSLog(@"self.htmlStr:%@",self.htmlStr);
+    [self.myWebView loadHTMLString:self.htmlStr baseURL:nil];
+
 }
 
 - (WKWebView *)myWebView {

@@ -273,6 +273,12 @@
 //    NSString *trigger = [NSString stringWithFormat:@"RE.insertSuccessReplaceImg(\"%@\", \"%@\");",imageKey, imgUrl];
 //    [self stringByEvaluatingJavaScriptFromString:trigger];
 //}
+
+- (void)insertSuccessVideoKey:(NSString *)videoKey videoUrl:(NSString *)videoUrl {
+    NSString *trigger = [NSString stringWithFormat:@"RE.insertSuccessVideo(\"%@\",\"%@\", \"%@\");",videoKey, videoUrl, [self deleteImageBase64String]];
+    [self evaluateJavaScript:trigger completionHandler:nil];
+}
+
 - (void)insertSuccessImageKey:(NSString *)imageKey imgUrl:(NSString *)imgUrl {
     NSString *trigger = [NSString stringWithFormat:@"RE.insertSuccessReplaceImg2(\"%@\",\"%@\", \"%@\");",imageKey, imgUrl, [self deleteImageBase64String]];
     [self evaluateJavaScript:trigger completionHandler:nil];
@@ -291,6 +297,14 @@
     [self evaluateJavaScript:@"RE.canFocus(true);" completionHandler:nil];
 }
 
+- (void)deleteVideoKey:(NSString *)key{
+    NSString *trigger = [NSString stringWithFormat:@"RE.removeVideo(\"%@\");",key];
+    
+    [self evaluateJavaScript:trigger completionHandler:nil];
+    //可编辑
+    [self evaluateJavaScript:@"RE.canFocus(true);" completionHandler:nil];
+}
+
 
 - (void)setupEditEnable:(BOOL)enable {
     
@@ -299,10 +313,10 @@
     }
 #warning 暂时不收键盘
     NSLog(@"setupEditEnable");
-    [self evaluateJavaScript:@"RE.canFocus(true);" completionHandler:nil];
+//    [self evaluateJavaScript:@"RE.canFocus(true);" completionHandler:nil];
 
     //可编辑
-//    [self evaluateJavaScript:enable ? @"RE.canFocus(true);" : @"RE.canFocus(false);" completionHandler:nil];
+    [self evaluateJavaScript:enable ? @"RE.canFocus(true);" : @"RE.canFocus(false);" completionHandler:nil];
 }
 
 - (void)setupContentDisable:(BOOL)disable{

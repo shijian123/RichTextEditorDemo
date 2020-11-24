@@ -40,13 +40,13 @@
     }
 }
 
-- (IBAction)clickUndoAction:(id)sender {
+- (IBAction)clickVideoAction:(id)sender {
     if ([self.delegate respondsToSelector:@selector(editorBar:didClickIndex:)]) {
         [self.delegate editorBar:self didClickIndex:1];
     }
 }
 
-- (IBAction)clickRedoAction:(id)sender {
+- (IBAction)clickEmojiAction:(id)sender {
     if ([self.delegate respondsToSelector:@selector(editorBar:didClickIndex:)]) {
         [self.delegate editorBar:self didClickIndex:2];
     }

@@ -48,7 +48,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "96"
                   endingLineNumber = "96"
-                  offsetFromSymbolStart = "208">
+                  offsetFromSymbolStart = "201">
                </Location>
                <Location
                   uuid = "1C4629E5-874A-4EF9-951A-21530DCD9D54 - c90d9ef605f5e41c"
@@ -63,7 +63,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "97"
                   endingLineNumber = "97"
-                  offsetFromSymbolStart = "76">
+                  offsetFromSymbolStart = "75">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -71,32 +71,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "839286E5-2280-4D8B-A34C-0343DB11B56B"
-            shouldBeEnabled = "Yes"
+            uuid = "931D996F-D9D9-44B9-9E48-80B733C99BF8"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RichTextEditorDemo/HTMLEditor/Controller/YXHtmlEditBaseController.m"
+            filePath = "RichTextEditorDemo/HTMLEditor/Tool/WKWebView+YXWebViewJSTool.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "656"
-            endingLineNumber = "656"
-            landmarkName = "-webView:didFinishNavigation:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4D7D3CCE-02FD-45B9-94D3-4790FEF2E811"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RichTextEditorDemo/HTMLEditor/Controller/YXHtmlEditBaseController.m"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "614"
-            endingLineNumber = "614"
-            landmarkName = "-webView:decidePolicyForNavigationAction:decisionHandler:"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
+            landmarkName = "-insertSuccessVideoKey:videoUrl:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

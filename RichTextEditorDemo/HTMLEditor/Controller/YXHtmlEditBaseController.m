@@ -20,6 +20,7 @@ YXHtmlEditorBarDelegate, YXHtmlFontStyleBarDelegate,
 UIAlertViewDelegate,UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) YXWKWebView *myWebView;
+@property (nonatomic, strong) YXHtmlEditHeaderView *headerView;
 @property (nonatomic, copy) NSString *tempArticleID;
 @property (nonatomic, copy) NSString *tempTitle;
 @property (nonatomic, copy) NSString *tempContent;
@@ -37,7 +38,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 /// 键盘高度
 @property (nonatomic, assign) CGFloat keyboardHeight;
 /// 是否显示设置字体bar
-@property (nonatomic, assign) BOOL showFontBar;
+//@property (nonatomic, assign) BOOL showFontBar;
 /// 存放所有正在上传及失败的图片model
 @property (nonatomic, strong) NSMutableArray *uploadPics;
 
@@ -123,11 +124,11 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 
 /// 添加自定义headerView
 - (void)makeHeaderView {
-    YXHtmlEditHeaderView *headerView = [[YXHtmlEditHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, YXEditHeaderViewH)];
-    headerView.selectTagsBlock = ^{
+    self.headerView = [[YXHtmlEditHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, YXEditHeaderViewH)];
+    self.headerView.selectTagsBlock = ^{
         [MBProgressHUD showText:@"选择标签"];
     };
-    self.myWebView.headerView = headerView;
+    self.myWebView.headerView = self.headerView;
 }
 
 /// 导出html
@@ -166,15 +167,18 @@ UIAlertViewDelegate,UIScrollViewDelegate>
         NSLog(@"%@", htmlStr);
         YXShowHTMLController *vc = [[YXShowHTMLController alloc] init];
         vc.title = @"贴子详情";
-        vc.htmlStr = htmlStr;
+        
+        NSString *headerStr = [NSString stringWithFormat:@"<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{max-width:100%%}</style>  <title>%@</title></header>", self.headerView.titleTF.text];
+        vc.htmlStr = [NSString stringWithFormat:@"<html>%@<body><h3 align='center'>%@</h3>%@</body></html>",headerStr,self.headerView.titleTF.text, htmlStr];
         [self.navigationController pushViewController:vc animated:YES];
     }];
 }
 
 - (CGFloat)editKeyboardHeight {
-    CGFloat keyBH = self.keyboardHeight + YXEditorBar_Height;
-    CGFloat datH = IS_IPhoneX ? (self.showFontBar ? 55 : 0) : (self.showFontBar ? 75 : 30);
-    return SCREEN_HEIGHT - keyBH - SCREEN_Y - datH - YXEditHeaderViewH;
+//    CGFloat keyBH = self.keyboardHeight + YXEditorBar_Height;
+//    CGFloat datH = IS_IPhoneX ? (self.showFontBar ? 55 : 0) : (self.showFontBar ? 75 : 30);
+//    return SCREEN_HEIGHT - keyBH - SCREEN_Y - datH - YXEditHeaderViewH;
+    return 100;
 }
 
 //获取IMG标签
@@ -256,11 +260,36 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     return urlArr[arc4random()%5];
 }
 
+/// 添加适配
+- (void)addVideoMethod {
+#warning 添加默认视频
+    [self.myWebView insertSuccessVideoKey:[NSString uuid] videoUrl:@"https://player.bilibili.com/player.html?aid=585228306&bvid=BV1cz4y1y7a6"];
+}
+
+/// 添加表情符
+- (void)addEmojiMethod {
+#warning 添加表情
+    [MBProgressHUD showText:@"添加表情"];
+}
+
+- (NSDictionary *)makeDictionaryWithResultURL:(NSString *)urlString preStr:(NSString *)preStr {
+    NSString *result =
+    [urlString stringByReplacingOccurrencesOfString:preStr withString:@" "];
+    NSString *jsonString = [result
+                            stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData
+                                    options:NSJSONReadingMutableContainers
+                                      error:&err];
+    return dict;
+}
+
 #pragma mark 键盘监听
 
 - (void)keyBoardWillShowFrame:(NSNotification *)notification {
-    self.fontBar.hidden = NO;
-    self.toolBarView.hidden = NO;
+//    self.fontBar.hidden = NO;
+//    self.toolBarView.hidden = NO;
     [YXUserDefaults setBool:YES forKey:@"YXKeyboardIsVisible"];
 
     //重新定位光标位置
@@ -280,8 +309,10 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 }
 
 - (void)keyBoardWillHideFrame:(NSNotification *)notification {
+    self.myWebView.accessoryView.fontBtn.selected = NO;
     self.fontBar.hidden = YES;
-    self.toolBarView.hidden = YES;
+
+//    self.toolBarView.hidden = YES;
     [YXUserDefaults setBool:NO forKey:@"YXKeyboardIsVisible"];
 }
 
@@ -350,30 +381,43 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 }
 
 /**
+ *  删除视频拦截
+ */
+- (void)handleVideoWithString:(NSString *)urlString {
+    //点击的视频删除标记URL（自定义）
+    NSString *preStr = @"protocol://iOS?code=uploadVideoResult&data=";
+    if ([urlString hasPrefix:preStr]) {
+        [self.view endEditing:YES];
+        NSDictionary *dict = [self makeDictionaryWithResultURL:urlString preStr:preStr];;
+        NSString *meg = [NSString stringWithFormat:@"视频的ID为%@", dict[@"videoId"]];
+        UIAlertController *alertCon = [UIAlertController alertControllerWithTitle:meg message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *leftAction = [UIAlertAction actionWithTitle:@"删除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self.myWebView deleteVideoKey:dict[@"videoId"]];
+        }];
+        UIAlertAction *rightAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alertCon addAction:leftAction];
+        [alertCon addAction:rightAction];
+        [self presentViewController:alertCon animated:YES completion:nil];
+
+    }
+}
+
+/**
  *  删除图片拦截
  */
-- (BOOL)handleWithString:(NSString *)urlString {
+- (BOOL)handleImageWithString:(NSString *)urlString {
     //点击的图片标记URL（自定义）
     NSString *preStr = @"protocol://iOS?code=uploadResult&data=";
     
     if ([urlString hasPrefix:preStr]) {
-         
         [self.view endEditing:YES];
-
-        NSString *result =
-        [urlString stringByReplacingOccurrencesOfString:preStr withString:@" "];
-        NSString *jsonString = [result
-                                stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-        NSError *err;
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData
-                                        options:NSJSONReadingMutableContainers
-                                          error:&err];
+        NSDictionary *dict = [self makeDictionaryWithResultURL:urlString preStr:preStr];;
         // 点击图片暂处理
         if ([dict[@"imgId"] isEqualToString:@"YXClickImgAction"]) {
             return YES;
         }
-        
         NSString *meg = [NSString stringWithFormat:@"上传的图片ID为%@", dict[@"imgId"]];
         
         UIAlertController *alert = [UIAlertController
@@ -613,15 +657,17 @@ UIAlertViewDelegate,UIScrollViewDelegate>
              containsObject:@"unorderedList"]) {
             [self.myWebView clearContentPlaceholder];
         }
-//        [self handleWithString:urlString];
-        
         [self.myWebView setupEditEnable:YES];  //恢复可编辑状态
 
         decisionHandler(WKNavigationActionPolicyCancel);
 
     }else if ([urlString rangeOfString:@"protocol://iOS?code=uploadResult"].location != NSNotFound){
-        [self handleWithString:urlString];
+        [self handleImageWithString:urlString];
         decisionHandler(WKNavigationActionPolicyCancel);
+    }else if([urlString rangeOfString:@"protocol://iOS?code=uploadVideoResult"].location != NSNotFound){// 删除视频
+        [self handleVideoWithString:urlString];
+        decisionHandler(WKNavigationActionPolicyCancel);
+
     }else {
         decisionHandler(WKNavigationActionPolicyAllow);
     }
@@ -651,10 +697,10 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     
     WS(weakSelf)
     [webView evaluateJavaScript:@"contentUpdateCallback" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
-        [weakSelf.myWebView getCaretYPositionHandler:^(NSString *numStr) {
-            CGFloat num = [numStr floatValue];
-            [weakSelf.myWebView autoScrollTop:num - [weakSelf editKeyboardHeight]];
-        }];
+//        [weakSelf.myWebView getCaretYPositionHandler:^(NSString *numStr) {
+//            CGFloat num = [numStr floatValue];
+//            [weakSelf.myWebView autoScrollTop:num - [weakSelf editKeyboardHeight]];
+//        }];
     }];
     [webView evaluateJavaScript:@"document.getElementById('article_content')."
      @"addEventListener('input', contentUpdateCallback, "
@@ -711,28 +757,32 @@ UIAlertViewDelegate,UIScrollViewDelegate>
             // 隐藏键盘
             [self.view endEditing:YES];
         } break;
-        case 1: {
+        case 1: {// 添加视频
+            [self addVideoMethod];
             //回退
-            [self.myWebView evaluateJavaScript:@"document.execCommand('undo')" completionHandler:nil];
+//            [self.myWebView evaluateJavaScript:@"document.execCommand('undo')" completionHandler:nil];
 
         } break;
-        case 2: {
-            [self.myWebView evaluateJavaScript:@"document.execCommand('redo')" completionHandler:nil];
+        case 2: {// 添加emoji
+            [self addEmojiMethod];
+//            [self.myWebView evaluateJavaScript:@"document.execCommand('redo')" completionHandler:nil];
 
         } break;
         case 3: {
             //显示更多区域
             editorBar.fontBtn.selected = !editorBar.fontBtn.selected;
             if (editorBar.fontBtn.selected) {
-                [self.view addSubview:self.fontBar];
-                self.showFontBar = YES;
+                CGRect barframe = [editorBar convertRect:editorBar.frame toView:self.view];
+                self.fontBar.frame = CGRectMake(barframe.origin.x, barframe.origin.y-self.fontBar.height, barframe.size.width, self.fontBar.height);
+//                [self.view addSubview:self.fontBar];
+                self.fontBar.hidden = NO;
             } else {
-                [self.fontBar removeFromSuperview];
-                self.showFontBar = NO;
+//                [self.fontBar removeFromSuperview];
+                self.fontBar.hidden = YES;
             }
         } break;
         case 4: {//超链接
-            [self hyperLink];
+            [self hyperLink];            
             //插入地址
             //[self.myWebView insertLinkUrl:@"https://www.baidu.com/" title:@"百度"
             //content:@"百度一下"];
@@ -885,12 +935,12 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 - (YXHtmlFontStyleBar *)fontBar {
     if (!_fontBar) {
         _fontBar = [[YXHtmlFontStyleBar alloc]
-                    initWithFrame:CGRectMake(0, CGRectGetMaxY(self.toolBarView.frame) -
-                                             YXFontBar_Height - YXEditorBar_Height,
+                    initWithFrame:CGRectMake(0, 0,
                                              self.view.frame.size.width, YXFontBar_Height)];
         _fontBar.delegate = self;
         _fontBar.hidden = YES;
         [_fontBar.heading2Item setSelected:YES];
+        [self.view addSubview:_fontBar];
     }
     return _fontBar;
 }

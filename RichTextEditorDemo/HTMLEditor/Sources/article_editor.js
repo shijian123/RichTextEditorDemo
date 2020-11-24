@@ -655,6 +655,23 @@ RE.insertSuccessReplaceImg =function(imgId,imgUrl){
                            });
 }
 
+RE.insertSuccessVideo = function(videoId,videoUrl,delImageData){
+      var html = '<div class="real-img-f-div" contenteditable="false" id="'+videoId+'-video"><img id="'+videoId+'-delVideoImg" src="data:image/png;base64,'+ delImageData +'" class="real-img-delete" /><iframe id="'+videoId+'-video" class="real-video" border="0" frameborder="0" widght scrolling="no" src="'+ videoUrl +'"></iframe>' + '</div>'+'<br /></div>';
+
+      RE.insertHTML(html);
+      var flag = false;
+      $("#"+videoId+"-delVideoImg").on("touchend",function(event){
+                             if(flag==true){
+                             return;
+                             }
+                             RE.canFocus(false);
+                             RE.uploadVideoOver(videoId);
+                              //该方法将停止事件的传播,阻止它被分派到其他 Document 节点
+                             event.stopPropagation();
+                             });
+       
+}
+             
 //图片上传成功: 含有删除按钮
 RE.insertSuccessReplaceImg2 =function(imgId,imgUrl,delImageData){
     //    var imgStr='<img id="'+imgId+'-img" class="real-img" src="'+ imgUrl +'">'+'<br />';
@@ -739,6 +756,14 @@ RE.uploadError = function(imgId){
                     });
 }
 
+//删除视频
+RE.removeVideo = function(videoId){
+      $("#"+videoId).remove();
+      $("#"+videoId+"-video").remove();
+      $("#"+videoId+"-delVideoImg").remove();
+
+}
+             
 //删除图片
 RE.removeImg = function(imgId){
     $("#"+imgId).remove();
@@ -750,6 +775,13 @@ RE.uploadOver = function(imgId){
     var json = {"imgId": imgId};
     window.location.href= "protocol://" + encodeURI("iOS?code=uploadResult&data="+JSON.stringify(json));
 }
+
+// 视频删除监听
+RE.uploadVideoOver = function(videoId){
+    var json = {"videoId": videoId};
+    window.location.href= "protocol://" + encodeURI("iOS?code=uploadVideoResult&data="+JSON.stringify(json));
+}
+             
 RE.removeErrorBtn = function(imgId,isHide){
     var reBtn=$("#"+imgId+" .reload-btn");
     isHide?reBtn.hide():reBtn.show();

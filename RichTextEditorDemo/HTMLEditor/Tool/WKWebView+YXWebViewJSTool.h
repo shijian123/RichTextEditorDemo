@@ -190,13 +190,21 @@ NS_ASSUME_NONNULL_BEGIN
  @param imgUrl 图片URL
  */
 - (void)insertSuccessImageKey:(NSString *)imageKey imgUrl:(NSString *)imgUrl;
+/**
+ *  加载视频
+ */
+- (void)insertSuccessVideoKey:(NSString *)videoKey videoUrl:(NSString *)videoUrl;
 
 /**
  *  删除图片
  @param key 图片的唯一ID
  */
 - (void)deleteImageKey:(NSString *)key;
-
+/**
+ *  删除视频
+ @param key 视频的唯一ID
+ */
+- (void)deleteVideoKey:(NSString *)key;
 
 /**
  *  删除图片上传失败的样式
