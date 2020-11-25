@@ -12,6 +12,7 @@
 #import "YXHtmlEditHeaderView.h"
 #import "TZImagePickerController.h"
 #import "YXShowHTMLController.h"
+#import <IQKeyboardManager.h>
 
 #define YXHtmlEditorURL @"richText_editor"
 #define YXEditHeaderViewH 100
@@ -52,6 +53,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     self.view.backgroundColor = [UIColor whiteColor];
     /// config
     [self.view addSubview:self.myWebView];
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
 //    [self.view addSubview:self.toolBarView];
     [[NSNotificationCenter defaultCenter]
      addObserver:self
@@ -150,7 +152,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
                      enumerateObjectsUsingBlock:^(NSString *_Nonnull obj2,
                                                   NSUInteger idx, BOOL *_Nonnull stop) {
                          if (obj2.length > 0 &&
-                             ![obj2 containsString:@"class=\"real-img-delete\""]) {
+                             (![obj2 containsString:@"class=\"real-img-delete\""])) {
                              //删除id
                              NSString *imgIDReg = @"id=\".*?\"";
                              NSString *imgStr = [self matchReplaceHtmlString:obj2
@@ -160,6 +162,15 @@ UIAlertViewDelegate,UIScrollViewDelegate>
                                                                           withString:imgStr];
                          }
                      }];
+                }else if(obj.length > 0 && [obj containsString:@"class=\"real-video-f-div\""]){
+                    NSString *imgReg = @"<img[^>]*>";
+                    NSArray *imgArray = [weakSelf matchString:obj toRegexString:imgReg];
+                    [imgArray
+                     enumerateObjectsUsingBlock:^(NSString *_Nonnull obj2,
+                                                  NSUInteger idx, BOOL *_Nonnull stop) {
+                        htmlStr = [htmlStr stringByReplacingOccurrencesOfString:obj2
+                                                                     withString:@""];
+                     }];
                 }
             }];
         }
@@ -168,7 +179,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
         YXShowHTMLController *vc = [[YXShowHTMLController alloc] init];
         vc.title = @"贴子详情";
         
-        NSString *headerStr = [NSString stringWithFormat:@"<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{max-width:100%%}</style>  <title>%@</title></header>", self.headerView.titleTF.text];
+        NSString *headerStr = [NSString stringWithFormat:@"<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><link rel='stylesheet' type='text/css' href='normalize.css'><link rel='stylesheet' type='text/css' href='style.css'><style>img{max-width:100%%}</style>  <title>%@</title></header>", self.headerView.titleTF.text];
         vc.htmlStr = [NSString stringWithFormat:@"<html>%@<body><h3 align='center'>%@</h3>%@</body></html>",headerStr,self.headerView.titleTF.text, htmlStr];
         [self.navigationController pushViewController:vc animated:YES];
     }];

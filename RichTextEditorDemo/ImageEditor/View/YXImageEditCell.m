@@ -13,5 +13,10 @@
     [super awakeFromNib];
     // Initialization code
 }
+- (IBAction)deleteImgAction:(id)sender {
+    if (self.deleteImgBlock) {
+        self.deleteImgBlock(self.imgView.tag-100);
+    }
+}
 
 @end

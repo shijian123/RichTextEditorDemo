@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import <IQKeyboardManager.h>
 
 @interface AppDelegate ()
 
@@ -21,9 +22,18 @@
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[ViewController alloc] init]];    
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
+    [self updateIQKeyboardSetting];
     
     return YES;
 }
 
+/**
+ *  更新IQKeyboard设置
+ */
+- (void)updateIQKeyboardSetting{
+    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
+    [IQKeyboardManager sharedManager].shouldPlayInputClicks = YES;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+}
 
 @end

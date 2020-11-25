@@ -16,6 +16,7 @@
                 <outlet property="headerView" destination="ZLb-N3-UPg" id="d6w-RZ-sVB"/>
                 <outlet property="imageCollView" destination="Gyg-4g-f5c" id="pfO-82-A2a"/>
                 <outlet property="imageCollViewH" destination="Wmw-4x-zj7" id="neE-8G-e1z"/>
+                <outlet property="mainScrollV" destination="KTJ-Vi-zsy" id="VWF-KO-jPq"/>
                 <outlet property="placeholderLab" destination="V9n-eq-ijC" id="9BL-WC-hkn"/>
                 <outlet property="view" destination="iN0-l3-epB" id="STx-1j-97s"/>
             </connections>
@@ -25,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KTJ-Vi-zsy">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KTJ-Vi-zsy">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XSW-Oo-l9r">
@@ -52,7 +53,7 @@
                                             </connections>
                                         </textView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请输入贴子信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9n-eq-ijC">
-                                            <rect key="frame" x="10" y="10" width="100" height="17"/>
+                                            <rect key="frame" x="12" y="10" width="100" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="SJJ-GN-XIn"/>
                                                 <constraint firstAttribute="height" constant="17" id="pph-Tu-zAJ"/>
@@ -78,14 +79,14 @@
                                         <constraint firstItem="V9n-eq-ijC" firstAttribute="top" secondItem="Smx-lU-HQf" secondAttribute="top" constant="10" id="GhK-gt-Nmb"/>
                                         <constraint firstAttribute="height" constant="200" id="YJ5-4f-qTf"/>
                                         <constraint firstAttribute="trailing" secondItem="1CD-nV-rNh" secondAttribute="trailing" constant="24" id="bKn-ed-PvO"/>
-                                        <constraint firstItem="V9n-eq-ijC" firstAttribute="leading" secondItem="Smx-lU-HQf" secondAttribute="leading" constant="10" id="f8k-Hm-c0G"/>
+                                        <constraint firstItem="V9n-eq-ijC" firstAttribute="leading" secondItem="Smx-lU-HQf" secondAttribute="leading" constant="12" id="f8k-Hm-c0G"/>
                                         <constraint firstItem="1CD-nV-rNh" firstAttribute="top" secondItem="eIc-Fu-XPc" secondAttribute="bottom" id="fM6-Pa-Ncq"/>
                                         <constraint firstItem="eIc-Fu-XPc" firstAttribute="leading" secondItem="Smx-lU-HQf" secondAttribute="leading" constant="10" id="hgh-NI-zMb"/>
                                         <constraint firstItem="eIc-Fu-XPc" firstAttribute="centerX" secondItem="Smx-lU-HQf" secondAttribute="centerX" id="uvI-ei-Jyc"/>
                                         <constraint firstAttribute="bottom" secondItem="1CD-nV-rNh" secondAttribute="bottom" constant="8" id="wgN-KT-IrL"/>
                                     </constraints>
                                 </view>
-                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Gyg-4g-f5c">
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Gyg-4g-f5c">
                                     <rect key="frame" x="0.0" y="320" width="375" height="100"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
@@ -108,6 +109,7 @@
                                 <constraint firstItem="ZLb-N3-UPg" firstAttribute="top" secondItem="XSW-Oo-l9r" secondAttribute="top" id="B8p-5w-1pn"/>
                                 <constraint firstItem="ZLb-N3-UPg" firstAttribute="leading" secondItem="XSW-Oo-l9r" secondAttribute="leading" id="C3d-bL-lMd"/>
                                 <constraint firstItem="Gyg-4g-f5c" firstAttribute="top" secondItem="Smx-lU-HQf" secondAttribute="bottom" constant="10" id="Ctt-VA-fTV"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Gyg-4g-f5c" secondAttribute="bottom" id="G0A-OT-LU7"/>
                                 <constraint firstItem="Smx-lU-HQf" firstAttribute="top" secondItem="ZLb-N3-UPg" secondAttribute="bottom" constant="10" id="HbS-d6-rur"/>
                                 <constraint firstItem="Gyg-4g-f5c" firstAttribute="top" secondItem="Smx-lU-HQf" secondAttribute="bottom" constant="10" id="hI4-4g-IMS"/>
                                 <constraint firstItem="Gyg-4g-f5c" firstAttribute="leading" secondItem="Smx-lU-HQf" secondAttribute="leading" id="ipg-Kn-Xma"/>

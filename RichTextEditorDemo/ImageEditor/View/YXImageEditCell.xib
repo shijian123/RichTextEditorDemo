@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,6 +21,33 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U9N-aY-Uwe">
                         <rect key="frame" x="5" y="5" width="90" height="90"/>
                     </imageView>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="22P-ne-SuG">
+                        <rect key="frame" x="5" y="71" width="90" height="24"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oDp-ip-5GJ">
+                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="封面" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qKs-EZ-GrX">
+                                <rect key="frame" x="0.0" y="0.0" width="90" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="qKs-EZ-GrX" secondAttribute="bottom" id="9nw-xU-dl8"/>
+                            <constraint firstAttribute="trailing" secondItem="oDp-ip-5GJ" secondAttribute="trailing" id="HpT-vY-DUk"/>
+                            <constraint firstAttribute="height" constant="24" id="L2u-g0-dgl"/>
+                            <constraint firstAttribute="bottom" secondItem="oDp-ip-5GJ" secondAttribute="bottom" id="XBi-gw-2s9"/>
+                            <constraint firstItem="qKs-EZ-GrX" firstAttribute="top" secondItem="22P-ne-SuG" secondAttribute="top" id="Z1o-aW-Zlz"/>
+                            <constraint firstItem="oDp-ip-5GJ" firstAttribute="leading" secondItem="22P-ne-SuG" secondAttribute="leading" id="ZSG-YQ-Y6b"/>
+                            <constraint firstItem="oDp-ip-5GJ" firstAttribute="top" secondItem="22P-ne-SuG" secondAttribute="top" id="hPl-I8-iKs"/>
+                            <constraint firstItem="qKs-EZ-GrX" firstAttribute="leading" secondItem="22P-ne-SuG" secondAttribute="leading" id="x5u-rr-3za"/>
+                            <constraint firstAttribute="trailing" secondItem="qKs-EZ-GrX" secondAttribute="trailing" id="zhE-wm-VYm"/>
+                        </constraints>
+                    </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnd-Bk-Sbo">
                         <rect key="frame" x="76" y="0.0" width="24" height="24"/>
                         <constraints>
@@ -27,6 +55,9 @@
                             <constraint firstAttribute="width" constant="24" id="usQ-Rk-49G"/>
                         </constraints>
                         <state key="normal" image="tizi_delete"/>
+                        <connections>
+                            <action selector="deleteImgAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="YBy-co-VpO"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
@@ -37,17 +68,27 @@
                 <constraint firstAttribute="bottom" secondItem="U9N-aY-Uwe" secondAttribute="bottom" constant="5" id="Kjq-y8-3xu"/>
                 <constraint firstItem="gnd-Bk-Sbo" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Ni5-6j-RS1"/>
                 <constraint firstItem="U9N-aY-Uwe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="Xzo-8d-OAl"/>
+                <constraint firstItem="22P-ne-SuG" firstAttribute="leading" secondItem="U9N-aY-Uwe" secondAttribute="leading" id="g1f-lH-9ju"/>
+                <constraint firstItem="22P-ne-SuG" firstAttribute="trailing" secondItem="U9N-aY-Uwe" secondAttribute="trailing" id="oqi-Zt-wfc"/>
                 <constraint firstAttribute="trailing" secondItem="gnd-Bk-Sbo" secondAttribute="trailing" id="p9O-y5-28d"/>
+                <constraint firstItem="22P-ne-SuG" firstAttribute="bottom" secondItem="U9N-aY-Uwe" secondAttribute="bottom" id="rRW-rE-u9x"/>
             </constraints>
             <size key="customSize" width="90" height="103"/>
             <connections>
+                <outlet property="coverView" destination="22P-ne-SuG" id="x9O-pc-Sz1"/>
                 <outlet property="deleBtn" destination="gnd-Bk-Sbo" id="dpg-un-WGR"/>
                 <outlet property="imgView" destination="U9N-aY-Uwe" id="sYe-e2-jQM"/>
             </connections>
-            <point key="canvasLocation" x="166.66666666666669" y="125.55803571428571"/>
+            <point key="canvasLocation" x="166.66666666666669" y="125.22321428571428"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="tizi_delete" width="16" height="16"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

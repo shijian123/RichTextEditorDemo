@@ -671,6 +671,9 @@ font[size="4"]{
 .real-img-f-div {
     position:relative;
 }
+.real-video-f-div {
+    position:relative;
+}
 
 .main-img-case.loading .real-img{
     filter:alpha(opacity=50);

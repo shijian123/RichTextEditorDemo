@@ -656,7 +656,7 @@ RE.insertSuccessReplaceImg =function(imgId,imgUrl){
 }
 
 RE.insertSuccessVideo = function(videoId,videoUrl,delImageData){
-      var html = '<div class="real-img-f-div" contenteditable="false" id="'+videoId+'-video"><img id="'+videoId+'-delVideoImg" src="data:image/png;base64,'+ delImageData +'" class="real-img-delete" /><iframe id="'+videoId+'-video" class="real-video" border="0" frameborder="0" widght scrolling="no" src="'+ videoUrl +'"></iframe>' + '</div>'+'<br /></div>';
+      var html = '<br /><div class="real-video-f-div" contenteditable="false" id="'+videoId+'-video"><img id="'+videoId+'-delVideoImg" src="data:image/png;base64,'+ delImageData +'" class="real-img-delete" /><iframe id="'+videoId+'-video" class="real-video" border="0" frameborder="0" widght scrolling="no" src="'+ videoUrl +'"></iframe>' + '</div>'+'<br /></div>';
 
       RE.insertHTML(html);
       var flag = false;

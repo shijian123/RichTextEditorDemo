@@ -9,7 +9,7 @@ target 'RichTextEditorDemo' do
 #  pod 'HXPhotoPicker/SDWebImage', '~> 3.1.5'
   pod 'TZImagePickerController'
   pod 'MBProgressHUD'
-#  pod 'IQKeyboardManager'
+  pod 'IQKeyboardManager'
   
 end
 

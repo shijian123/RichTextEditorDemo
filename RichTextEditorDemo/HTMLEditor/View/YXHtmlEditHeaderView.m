@@ -105,7 +105,12 @@
 }
 
 - (void)textFieldDidChangeSelection:(UITextField *)textField {
-    _numLab.text = [NSString stringWithFormat:@"%02lu/%d", (unsigned long)textField.text.length,YXMAXWOEDNUM];
+    if (textField.text.length > YXMAXWOEDNUM) {
+        _numLab.text = [NSString stringWithFormat:@"%d/%d", YXMAXWOEDNUM,YXMAXWOEDNUM];
+    }else {
+        _numLab.text = [NSString stringWithFormat:@"%02lu/%d", (unsigned long)textField.text.length,YXMAXWOEDNUM];
+
+    }
 }
 
 @end
