@@ -655,6 +655,32 @@ RE.insertSuccessReplaceImg =function(imgId,imgUrl){
                            });
 }
 
+RE.insertLocalImage = function(imgId,imageData,delImageData){
+      var html = '<div class="real-img-f-div" contenteditable="false" id="'+imgId+'-img" >' +
+      '<img id="'+imgId+'-img" class="real-img" src="data:image/png;base64,'+ imageData +'">' +
+      '<img id="'+imgId+'-delImg" src="data:image/png;base64,'+ delImageData +'" class="real-img-delete" />' + '</div>'+'<br />';
+
+      RE.insertHTML(html);
+      var flag = false;
+      $("#"+imgId+"-img").on("touchend",function(event){
+                             if(flag==true){
+                             return;
+                             }
+                             RE.canFocus(false);
+                             RE.uploadOver("YXClickImgAction");
+                             event.stopPropagation();
+                             });
+      $("#"+imgId+"-delImg").on("touchend",function(event){
+                             if(flag==true){
+                             return;
+                             }
+                             RE.canFocus(false);
+                             RE.uploadOver(imgId);
+                             event.stopPropagation();
+                             });
+}
+
+             
 RE.insertSuccessVideo = function(videoId,videoUrl,delImageData){
       var html = '<br /><div class="real-video-f-div" contenteditable="false" id="'+videoId+'-video"><img id="'+videoId+'-delVideoImg" src="data:image/png;base64,'+ delImageData +'" class="real-img-delete" /><iframe id="'+videoId+'-video" class="real-video" border="0" frameborder="0" widght scrolling="no" src="'+ videoUrl +'"></iframe>' + '</div>'+'<br /></div>';
 

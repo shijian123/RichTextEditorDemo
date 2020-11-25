@@ -263,6 +263,16 @@
     
 }
 
+/// 加载本地图片
+/// @param imageData 本地图片的Data
+/// @param key 本地图片的Id
+- (void)insertLocalImage:(NSData *)imageData key:(NSString *)key{
+    NSString *imageBase64String = [imageData base64EncodedStringWithOptions:0];
+    NSString *trigger = [NSString stringWithFormat:@"RE.insertLocalImage(\"%@\", \"%@\", \"%@\");",key, imageBase64String,[self deleteImageBase64String]];
+    [self evaluateJavaScript:trigger completionHandler:nil];
+}
+
+
 //图片上传中
 - (void)insertImageKey:(NSString *)imageKey progress:(CGFloat)progress{
     NSString *trigger = [NSString stringWithFormat:@"RE.uploadImg(\"%@\", \"%.2f\");",imageKey, progress];

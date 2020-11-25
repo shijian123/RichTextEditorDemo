@@ -42,6 +42,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 //@property (nonatomic, assign) BOOL showFontBar;
 /// 存放所有正在上传及失败的图片model
 @property (nonatomic, strong) NSMutableArray *uploadPics;
+@property (nonatomic, strong) YXEmojiInputView *emojiKeyboard;
 
 @end
 
@@ -275,12 +276,6 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 - (void)addVideoMethod {
 #warning 添加默认视频
     [self.myWebView insertSuccessVideoKey:[NSString uuid] videoUrl:@"https://player.bilibili.com/player.html?aid=585228306&bvid=BV1cz4y1y7a6"];
-}
-
-/// 添加表情符
-- (void)addEmojiMethod {
-#warning 添加表情
-    [MBProgressHUD showText:@"添加表情"];
 }
 
 - (NSDictionary *)makeDictionaryWithResultURL:(NSString *)urlString preStr:(NSString *)preStr {
@@ -539,12 +534,13 @@ UIAlertViewDelegate,UIScrollViewDelegate>
             fileM.key = [NSString uuid];
             [weakSelf.uploadPics addObject:fileM];
             
-#warning 插入图片，待解决插入视频
-            // 1、插入本地图片
-            [weakSelf.myWebView insertImage:fileM.imageData key:fileM.key];
+            // 加载本地图片
+            [weakSelf.myWebView insertLocalImage:fileM.imageData key:fileM.key];
             
+            // 1、网络请求本地占位图
+//            [weakSelf.myWebView insertImage:fileM.imageData key:fileM.key];
             // 2、模拟网络请求上传图片 更新进度
-            [weakSelf.myWebView insertImageKey:fileM.key progress:0.5];
+//            [weakSelf.myWebView insertImageKey:fileM.key progress:0.5];
             //开始请求上传
             //                NSMutableDictionary *dic = [[NSMutableDictionary
             //                alloc]init];
@@ -566,10 +562,10 @@ UIAlertViewDelegate,UIScrollViewDelegate>
             //                        NSString *picUrl = datas;
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                NSString *picUrl = [self imgUrlarc4random];
-                [weakSelf.myWebView insertImageKey:fileM.key progress:1];
+//                NSString *picUrl = [self imgUrlarc4random];
+//                [weakSelf.myWebView insertImageKey:fileM.key progress:1];
                 // BOOL error = false; //上传成功样式
-                [weakSelf.myWebView insertSuccessImageKey:fileM.key imgUrl:picUrl];
+//                [weakSelf.myWebView insertSuccessImageKey:fileM.key imgUrl:picUrl];
                 fileM.type = YXUploadImageModelTypeError;
                 if ([weakSelf.uploadPics containsObject:fileM]) {
                     [weakSelf.uploadPics removeObject:fileM];
@@ -775,7 +771,18 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 
         } break;
         case 2: {// 添加emoji
-            [self addEmojiMethod];
+#warning 添加表情
+            if (self.myWebView.showEmojiKeyboard) {
+                self.myWebView.showEmojiKeyboard = NO;
+                [editorBar.emojiBtn setImage:[UIImage imageNamed:@"btn_chat_input_emoji"] forState:UIControlStateNormal];
+
+            }else {
+                self.myWebView.showEmojiKeyboard = YES;
+                [editorBar.emojiBtn setImage:[UIImage imageNamed:@"btn_chat_input_keyborad"] forState:UIControlStateNormal];
+            }
+            [self.myWebView.inputView reloadInputViews];
+//            [self.myWebView.inputView becomeFirstResponder];
+            
 //            [self.myWebView evaluateJavaScript:@"document.execCommand('redo')" completionHandler:nil];
 
         } break;
@@ -980,6 +987,13 @@ UIAlertViewDelegate,UIScrollViewDelegate>
         
     }
     return _myWebView;
+}
+
+- (YXEmojiInputView *)emojiKeyboard {
+    if (_emojiKeyboard == nil) {
+        _emojiKeyboard = [[YXEmojiInputView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, 230)];
+    }
+    return _emojiKeyboard;
 }
 
 //- (TZImagePickerController *)imagePickerVc{

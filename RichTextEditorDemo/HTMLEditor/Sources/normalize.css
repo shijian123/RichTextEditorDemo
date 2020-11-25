@@ -674,11 +674,14 @@ font[size="4"]{
 .real-video-f-div {
     position:relative;
 }
-
+/* 设置透明度 */
 .main-img-case.loading .real-img{
     filter:alpha(opacity=50);
     -moz-opacity:0.5;
     opacity:0.5;
+/*filter:alpha(opacity=100);*/
+/*-moz-opacity:1.0;*/
+/*opacity:1.0;*/
 }
 
 .loading-case{

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YXEmojiTabbar">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ic9-1a-MYQ">
+                    <rect key="frame" x="0.0" y="0.0" width="372" height="44"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6aa-F5-1px">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="giu-na-j2L">
+                    <rect key="frame" x="378" y="0.0" width="32" height="44"/>
+                    <state key="normal" image="delete-emoji"/>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="giu-na-j2L" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="3iu-Fb-2O7"/>
+                <constraint firstItem="giu-na-j2L" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="D8v-IP-TW4"/>
+                <constraint firstItem="ic9-1a-MYQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="StH-Fc-fYu"/>
+                <constraint firstItem="giu-na-j2L" firstAttribute="leading" secondItem="ic9-1a-MYQ" secondAttribute="trailing" constant="6" id="VII-Qf-knC"/>
+                <constraint firstAttribute="trailing" secondItem="giu-na-j2L" secondAttribute="trailing" constant="4" id="a2m-hj-ELE"/>
+                <constraint firstItem="ic9-1a-MYQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cMs-Eu-aCT"/>
+                <constraint firstItem="ic9-1a-MYQ" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="d3W-QH-M3n"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="myTabbarCollV" destination="ic9-1a-MYQ" id="uRt-15-iN0"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="129.91071428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="delete-emoji" width="32" height="32"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

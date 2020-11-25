@@ -11,6 +11,7 @@
     BOOL alreadyShowHeader;
 }
 @property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) YXEmojiInputView *emojiInputView;
 
 @end
 
@@ -87,11 +88,26 @@
     return self.accessoryView;
 }
 
+- (__kindof UIView *)inputView{
+    if (self.showEmojiKeyboard) {
+        return self.emojiInputView;
+    }else {
+        return nil;
+    }
+}
+
 - (YXHtmlEditorBar *)accessoryView {
     if (_accessoryView == nil) {
         _accessoryView = [[NSBundle mainBundle] loadNibNamed:@"YXHtmlEditorBar" owner:self options:nil].firstObject;
     }
     return _accessoryView;
+}
+
+- (YXEmojiInputView *)emojiInputView {
+    if (_emojiInputView == nil) {
+        _emojiInputView = [[YXEmojiInputView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, 230)];
+    }
+    return _emojiInputView;
 }
 
 @end

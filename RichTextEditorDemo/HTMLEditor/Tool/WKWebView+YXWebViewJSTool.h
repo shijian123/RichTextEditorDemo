@@ -181,6 +181,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)insertImageKey:(NSString *)imageKey progress:(CGFloat)progress;
 
+/// 加载本地图片
+/// @param imageData 本地图片的Data
+/// @param key 本地图片的Id
+- (void)insertLocalImage:(NSData *)imageData key:(NSString *)key;
 
 //图片上传成功 替换img标签
 
