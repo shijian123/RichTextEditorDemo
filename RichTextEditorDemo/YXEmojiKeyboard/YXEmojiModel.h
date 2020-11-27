@@ -6,18 +6,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YXEmojiGifImage.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
+@class SDAnimatedImage;
 @interface YXEmojiItemModel : NSObject
 @property (nonatomic, copy) NSString *desc;
 
 @property (nonatomic, copy) NSString *imageName;
-
+@property (nonatomic, copy) NSString *folderName;
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, copy) NSString *imagePath;
+@property (nonatomic, assign) BOOL isLargeEmoji;
 
-@property (nonatomic, strong) YXEmojiGifImage *gifImage;
+@property (nonatomic, strong) SDAnimatedImage *gifImage;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

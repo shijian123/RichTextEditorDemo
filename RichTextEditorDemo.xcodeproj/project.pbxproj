@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		24B67B316734B08C72DC933C /* Pods_RichTextEditorDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CA915C7C594C9EA3B7782FC /* Pods_RichTextEditorDemo.framework */; };
 		3190F3D8256E4A3B00B4DBB6 /* EmojiPackage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3190F3D7256E4A3B00B4DBB6 /* EmojiPackage.bundle */; };
-		3190F3DE256E4A5A00B4DBB6 /* YXEmojiGifImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3190F3DD256E4A5A00B4DBB6 /* YXEmojiGifImage.m */; };
-		3190F3E4256E4A6F00B4DBB6 /* YXEmojiGifImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3190F3E3256E4A6F00B4DBB6 /* YXEmojiGifImageView.m */; };
 		3190F3EA256E4B5B00B4DBB6 /* YXEmojiInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3190F3E9256E4B5B00B4DBB6 /* YXEmojiInputView.m */; };
 		3190F3F0256E4C1600B4DBB6 /* YXEmojiContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3190F3EF256E4C1600B4DBB6 /* YXEmojiContentView.m */; };
 		3190F3F6256E4C5800B4DBB6 /* YXEmojiTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3190F3F5256E4C5800B4DBB6 /* YXEmojiTabbar.m */; };
@@ -18,7 +16,6 @@
 		3190F409256E4FF500B4DBB6 /* YXEmojiDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3190F408256E4FF500B4DBB6 /* YXEmojiDataManager.m */; };
 		3190F415256E514E00B4DBB6 /* YXEmojiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3190F414256E514E00B4DBB6 /* YXEmojiModel.m */; };
 		3190F41E256E520D00B4DBB6 /* YXTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 3190F41D256E520D00B4DBB6 /* YXTextAttachment.m */; };
-		3190F428256E58E800B4DBB6 /* YXEmojiContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3190F427256E58E800B4DBB6 /* YXEmojiContentView.xib */; };
 		3190F432256E59F000B4DBB6 /* YXEmojiViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3190F430256E59F000B4DBB6 /* YXEmojiViewCell.m */; };
 		3190F433256E59F000B4DBB6 /* YXEmojiViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3190F431256E59F000B4DBB6 /* YXEmojiViewCell.xib */; };
 		31E5BD53256538BA00A259B8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5BD52256538BA00A259B8 /* AppDelegate.m */; };
@@ -54,6 +51,8 @@
 		31EC79E3256D084100366859 /* YXImageEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EC79E1256D084100366859 /* YXImageEditCell.m */; };
 		31EC79E4256D084100366859 /* YXImageEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31EC79E2256D084100366859 /* YXImageEditCell.xib */; };
 		31EC7A63256D114100366859 /* UITextView+YX.m in Sources */ = {isa = PBXBuildFile; fileRef = 31EC7A62256D114100366859 /* UITextView+YX.m */; };
+		31F50462256FA61800338C87 /* showRichText.html in Resources */ = {isa = PBXBuildFile; fileRef = 31F50461256FA61800338C87 /* showRichText.html */; };
+		31F504682570A02900338C87 /* YXHtmlEditTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 31F504672570A02900338C87 /* YXHtmlEditTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,10 +75,6 @@
 /* Begin PBXFileReference section */
 		091CE115287A7FCEBC39CC88 /* Pods-RichTextEditorDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RichTextEditorDemo.debug.xcconfig"; path = "Target Support Files/Pods-RichTextEditorDemo/Pods-RichTextEditorDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		3190F3D7256E4A3B00B4DBB6 /* EmojiPackage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EmojiPackage.bundle; sourceTree = "<group>"; };
-		3190F3DC256E4A5A00B4DBB6 /* YXEmojiGifImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXEmojiGifImage.h; sourceTree = "<group>"; };
-		3190F3DD256E4A5A00B4DBB6 /* YXEmojiGifImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXEmojiGifImage.m; sourceTree = "<group>"; };
-		3190F3E2256E4A6F00B4DBB6 /* YXEmojiGifImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXEmojiGifImageView.h; sourceTree = "<group>"; };
-		3190F3E3256E4A6F00B4DBB6 /* YXEmojiGifImageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXEmojiGifImageView.m; sourceTree = "<group>"; };
 		3190F3E8256E4B5B00B4DBB6 /* YXEmojiInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXEmojiInputView.h; sourceTree = "<group>"; };
 		3190F3E9256E4B5B00B4DBB6 /* YXEmojiInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXEmojiInputView.m; sourceTree = "<group>"; };
 		3190F3EE256E4C1600B4DBB6 /* YXEmojiContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXEmojiContentView.h; sourceTree = "<group>"; };
@@ -93,7 +88,6 @@
 		3190F414256E514E00B4DBB6 /* YXEmojiModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXEmojiModel.m; sourceTree = "<group>"; };
 		3190F41C256E520D00B4DBB6 /* YXTextAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXTextAttachment.h; sourceTree = "<group>"; };
 		3190F41D256E520D00B4DBB6 /* YXTextAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXTextAttachment.m; sourceTree = "<group>"; };
-		3190F427256E58E800B4DBB6 /* YXEmojiContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXEmojiContentView.xib; sourceTree = "<group>"; };
 		3190F42F256E59F000B4DBB6 /* YXEmojiViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXEmojiViewCell.h; sourceTree = "<group>"; };
 		3190F430256E59F000B4DBB6 /* YXEmojiViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXEmojiViewCell.m; sourceTree = "<group>"; };
 		3190F431256E59F000B4DBB6 /* YXEmojiViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXEmojiViewCell.xib; sourceTree = "<group>"; };
@@ -156,6 +150,9 @@
 		31EC79E2256D084100366859 /* YXImageEditCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YXImageEditCell.xib; sourceTree = "<group>"; };
 		31EC7A61256D114100366859 /* UITextView+YX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextView+YX.h"; sourceTree = "<group>"; };
 		31EC7A62256D114100366859 /* UITextView+YX.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextView+YX.m"; sourceTree = "<group>"; };
+		31F50461256FA61800338C87 /* showRichText.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = showRichText.html; sourceTree = "<group>"; };
+		31F504662570A02900338C87 /* YXHtmlEditTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YXHtmlEditTool.h; sourceTree = "<group>"; };
+		31F504672570A02900338C87 /* YXHtmlEditTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YXHtmlEditTool.m; sourceTree = "<group>"; };
 		3CA915C7C594C9EA3B7782FC /* Pods_RichTextEditorDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RichTextEditorDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0FDC2562509EA89C231BA0 /* Pods-RichTextEditorDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RichTextEditorDemo.release.xcconfig"; path = "Target Support Files/Pods-RichTextEditorDemo/Pods-RichTextEditorDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -198,15 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				3190F3D7256E4A3B00B4DBB6 /* EmojiPackage.bundle */,
-				3190F3DC256E4A5A00B4DBB6 /* YXEmojiGifImage.h */,
-				3190F3DD256E4A5A00B4DBB6 /* YXEmojiGifImage.m */,
-				3190F3E2256E4A6F00B4DBB6 /* YXEmojiGifImageView.h */,
-				3190F3E3256E4A6F00B4DBB6 /* YXEmojiGifImageView.m */,
 				3190F3E8256E4B5B00B4DBB6 /* YXEmojiInputView.h */,
 				3190F3E9256E4B5B00B4DBB6 /* YXEmojiInputView.m */,
 				3190F3EE256E4C1600B4DBB6 /* YXEmojiContentView.h */,
 				3190F3EF256E4C1600B4DBB6 /* YXEmojiContentView.m */,
-				3190F427256E58E800B4DBB6 /* YXEmojiContentView.xib */,
 				3190F3F4256E4C5800B4DBB6 /* YXEmojiTabbar.h */,
 				3190F3F5256E4C5800B4DBB6 /* YXEmojiTabbar.m */,
 				3190F3FA256E4CB800B4DBB6 /* YXEmojiTabbar.xib */,
@@ -331,6 +323,7 @@
 				31E5BDC8256610A800A259B8 /* jquery.js */,
 				31E5BDCA256610A800A259B8 /* normalize.css */,
 				31E5BDC9256610A800A259B8 /* richText_editor.html */,
+				31F50461256FA61800338C87 /* showRichText.html */,
 				31E5BDCD256610A800A259B8 /* style.css */,
 			);
 			path = Sources;
@@ -356,6 +349,8 @@
 				31E5BDAE25660C6400A259B8 /* WKWebView+YXHideAccessoryView.m */,
 				31E5BDB325660C9C00A259B8 /* WKWebView+YXWebViewJSTool.h */,
 				31E5BDB425660C9C00A259B8 /* WKWebView+YXWebViewJSTool.m */,
+				31F504662570A02900338C87 /* YXHtmlEditTool.h */,
+				31F504672570A02900338C87 /* YXHtmlEditTool.m */,
 				31E5BDB925660E4600A259B8 /* YXHtmlCommon.h */,
 			);
 			path = Tool;
@@ -509,6 +504,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31F50462256FA61800338C87 /* showRichText.html in Resources */,
 				3190F3D8256E4A3B00B4DBB6 /* EmojiPackage.bundle in Resources */,
 				3190F3FB256E4CB800B4DBB6 /* YXEmojiTabbar.xib in Resources */,
 				31E5BDCF256610A800A259B8 /* richText_editor.html in Resources */,
@@ -518,7 +514,6 @@
 				31E5BDC425660F1F00A259B8 /* YXHtmlEditorBar.xib in Resources */,
 				31E5BD5C256538BA00A259B8 /* Main.storyboard in Resources */,
 				31EC79E4256D084100366859 /* YXImageEditCell.xib in Resources */,
-				3190F428256E58E800B4DBB6 /* YXEmojiContentView.xib in Resources */,
 				31E5BDD1256610A800A259B8 /* article_editor.js in Resources */,
 				31E5BDD3256610A800A259B8 /* style.css in Resources */,
 				31E5BDD0256610A800A259B8 /* normalize.css in Resources */,
@@ -595,7 +590,6 @@
 				31E5BE3C256665D500A259B8 /* MBProgressHUD+YX.m in Sources */,
 				31EC79E3256D084100366859 /* YXImageEditCell.m in Sources */,
 				3190F3F6256E4C5800B4DBB6 /* YXEmojiTabbar.m in Sources */,
-				3190F3E4256E4A6F00B4DBB6 /* YXEmojiGifImageView.m in Sources */,
 				31E5BD59256538BA00A259B8 /* ViewController.m in Sources */,
 				31E5BD9725660A4500A259B8 /* YXHtmlEditBaseController.m in Sources */,
 				31EC7A63256D114100366859 /* UITextView+YX.m in Sources */,
@@ -612,11 +606,11 @@
 				31E5BDE52566179A00A259B8 /* YXHtmlUploadPictureModel.m in Sources */,
 				31E5BD53256538BA00A259B8 /* AppDelegate.m in Sources */,
 				31E5BDBC25660EFA00A259B8 /* YXHtmlEditorBar.m in Sources */,
+				31F504682570A02900338C87 /* YXHtmlEditTool.m in Sources */,
 				31EC79D5256D042000366859 /* YXImageEditController.m in Sources */,
 				31E5BEEB256BC3C000A259B8 /* YXShowHTMLController.m in Sources */,
 				31E5BD64256538BC00A259B8 /* main.m in Sources */,
 				31E5BDDC256610F200A259B8 /* YXHtmlFontStyleBar.m in Sources */,
-				3190F3DE256E4A5A00B4DBB6 /* YXEmojiGifImage.m in Sources */,
 				31E5BDB525660C9C00A259B8 /* WKWebView+YXWebViewJSTool.m in Sources */,
 				3190F409256E4FF500B4DBB6 /* YXEmojiDataManager.m in Sources */,
 			);

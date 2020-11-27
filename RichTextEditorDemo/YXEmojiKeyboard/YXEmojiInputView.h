@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YXEmojiModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXEmojiInputView : UIView
+@property (nonatomic) void(^clickEmojiItemBlock)(YXEmojiItemModel *model);
+@property (nonatomic) void(^clickDeleteEmojiBlock)(void);
 
 @end
 

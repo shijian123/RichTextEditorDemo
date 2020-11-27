@@ -37,9 +37,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, assign) BOOL showHtml;
 /// 键盘高度
-@property (nonatomic, assign) CGFloat keyboardHeight;
-/// 是否显示设置字体bar
-//@property (nonatomic, assign) BOOL showFontBar;
+//@property (nonatomic, assign) CGFloat keyboardHeight;
 /// 存放所有正在上传及失败的图片model
 @property (nonatomic, strong) NSMutableArray *uploadPics;
 @property (nonatomic, strong) YXEmojiInputView *emojiKeyboard;
@@ -61,24 +59,22 @@ UIAlertViewDelegate,UIScrollViewDelegate>
      selector:@selector(keyBoardWillShowFrame:)
      name:UIKeyboardWillShowNotification
      object:nil];
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(keyBoardWillChangeFrame:)
-     name:UIKeyboardWillChangeFrameNotification
-     object:nil];
+//    [[NSNotificationCenter defaultCenter]
+//     addObserver:self
+//     selector:@selector(keyBoardWillChangeFrame:)
+//     name:UIKeyboardWillChangeFrameNotification
+//     object:nil];
     [[NSNotificationCenter defaultCenter]
      addObserver:self
      selector:@selector(keyBoardWillHideFrame:)
      name:UIKeyboardWillHideNotification
      object:nil];
-    
-    
-//    self.toolBarView.delegate = self;
-    [self.toolBarView
-     addObserver:self
-     forKeyPath:@"transform"
-     options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
-     context:nil];
+        
+//    [self.toolBarView
+//     addObserver:self
+//     forKeyPath:@"transform"
+//     options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
+//     context:nil];
     
     self.navigationItem.rightBarButtonItem =
     [[UIBarButtonItem alloc] initWithTitle:@"发布"
@@ -142,13 +138,13 @@ UIAlertViewDelegate,UIScrollViewDelegate>
         __block NSString *htmlStr = [NSString stringWithString:textStr];
         //过滤掉无效视图
         NSString *divReg = @"<div[^>]*>.*?</div>";
-        NSArray *divArray = [weakSelf matchString:htmlStr toRegexString:divReg];
+        NSArray *divArray = [YXHtmlEditTool matchString:htmlStr toRegexString:divReg];
         if (divArray.count > 0) {
             [divArray enumerateObjectsUsingBlock:^(
                                                    NSString *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
                 if (obj.length > 0 && [obj containsString:@"class=\"real-img-f-div\""]) {
                     NSString *imgReg = @"<img[^>]*>";
-                    NSArray *imgArray = [weakSelf matchString:obj toRegexString:imgReg];
+                    NSArray *imgArray = [YXHtmlEditTool matchString:obj toRegexString:imgReg];
                     [imgArray
                      enumerateObjectsUsingBlock:^(NSString *_Nonnull obj2,
                                                   NSUInteger idx, BOOL *_Nonnull stop) {
@@ -156,7 +152,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
                              (![obj2 containsString:@"class=\"real-img-delete\""])) {
                              //删除id
                              NSString *imgIDReg = @"id=\".*?\"";
-                             NSString *imgStr = [self matchReplaceHtmlString:obj2
+                             NSString *imgStr = [YXHtmlEditTool matchReplaceHtmlString:obj2
                                                                  RegexString:imgIDReg
                                                                   withString:@""];
                              htmlStr = [htmlStr stringByReplacingOccurrencesOfString:obj
@@ -165,7 +161,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
                      }];
                 }else if(obj.length > 0 && [obj containsString:@"class=\"real-video-f-div\""]){
                     NSString *imgReg = @"<img[^>]*>";
-                    NSArray *imgArray = [weakSelf matchString:obj toRegexString:imgReg];
+                    NSArray *imgArray = [YXHtmlEditTool matchString:obj toRegexString:imgReg];
                     [imgArray
                      enumerateObjectsUsingBlock:^(NSString *_Nonnull obj2,
                                                   NSUInteger idx, BOOL *_Nonnull stop) {
@@ -175,89 +171,29 @@ UIAlertViewDelegate,UIScrollViewDelegate>
                 }
             }];
         }
+//        NSString *localImgReg = @"<img[^>]*>";
+//        NSArray *imgArr = [YXHtmlEditTool matchString:htmlStr toRegexString:localImgReg];
+//        [imgArr enumerateObjectsUsingBlock:^(NSString *  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            if ([obj containsString:@"localEmojiImage"]) {
+//                NSArray *arr = [obj componentsSeparatedByString:@"alt="];
+//                if (arr.count > 1) {
+//                    NSArray *arr1 = [arr[1] componentsSeparatedByString:@"\""];
+//                    NSString *altStr = arr1[1];
+//                    htmlStr = [htmlStr stringByReplacingOccurrencesOfString:obj
+//                                                                 withString:altStr];
+//                }
+//            }
+            /**
+             <img id="localImage" height="30" width="30" alt="[/酷]" src="file:///Users/zhangchaoyang/Library/Developer/CoreSimulator/Devices/9120F1F7-247D-4C30-86D4-3CC6038BDF0C/data/Containers/Bundle/Application/F8C4510C-4D96-4D99-9632-30B8C8142B09/RichTextEditorDemo.app/EmojiPackage.bundle/Item01/013.png" style="-webkit-text-size-adjust: 100%;">
+             */
+//        }];
         //导出结果
         NSLog(@"%@", htmlStr);
         YXShowHTMLController *vc = [[YXShowHTMLController alloc] init];
         vc.title = @"贴子详情";
-        
-        NSString *headerStr = [NSString stringWithFormat:@"<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><link rel='stylesheet' type='text/css' href='normalize.css'><link rel='stylesheet' type='text/css' href='style.css'><style>img{max-width:100%%}</style>  <title>%@</title></header>", self.headerView.titleTF.text];
-        vc.htmlStr = [NSString stringWithFormat:@"<html>%@<body><h3 align='center'>%@</h3>%@</body></html>",headerStr,self.headerView.titleTF.text, htmlStr];
+        vc.htmlStr = [NSString stringWithFormat:@"<h1 align='center'>%@</h1>%@",self.headerView.titleTF.text, htmlStr];
         [self.navigationController pushViewController:vc animated:YES];
     }];
-}
-
-- (CGFloat)editKeyboardHeight {
-//    CGFloat keyBH = self.keyboardHeight + YXEditorBar_Height;
-//    CGFloat datH = IS_IPhoneX ? (self.showFontBar ? 55 : 0) : (self.showFontBar ? 75 : 30);
-//    return SCREEN_HEIGHT - keyBH - SCREEN_Y - datH - YXEditHeaderViewH;
-    return 100;
-}
-
-//获取IMG标签
-- (NSArray *)getImgTags:(NSString *)htmlText {
-    if (htmlText == nil) {
-        return nil;
-    }
-    NSError *error;
-    NSString *regulaStr = @"<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>";
-    NSRegularExpression *regex = [NSRegularExpression
-                                  regularExpressionWithPattern:regulaStr
-                                  options:NSRegularExpressionCaseInsensitive
-                                  error:&error];
-    NSArray *arrayOfAllMatches =
-    [regex matchesInString:htmlText
-                   options:0
-                     range:NSMakeRange(0, [htmlText length])];
-    
-    return arrayOfAllMatches;
-}
-
-/// 正则匹配
-- (NSArray *)matchString:(NSString *)string toRegexString:(NSString *)regexStr {
-    NSRegularExpression *regex = [NSRegularExpression
-                                  regularExpressionWithPattern:regexStr
-                                  options:NSRegularExpressionCaseInsensitive
-                                  error:nil];
-    
-    NSArray *matches = [regex matchesInString:string
-                                      options:0
-                                        range:NSMakeRange(0, [string length])];
-    // match: 所有匹配到的字符,根据() 包含级
-    NSMutableArray *array = [NSMutableArray array];
-    
-    for (NSTextCheckingResult *match in matches) {
-        for (int i = 0; i < [match numberOfRanges]; i++) {
-            //以正则中的(),划分成不同的匹配部分
-            NSString *component = [string substringWithRange:[match rangeAtIndex:i]];
-            
-            [array addObject:component];
-        }
-    }
-    return array;
-}
-
-/**
- * 正则替换
- */
-- (NSString *)matchReplaceHtmlString:(NSString *)string
-                         RegexString:(NSString *)regexStr
-                          withString:(NSString *)replaceStr {
-    if (!string || string.length == 0 || regexStr.length == 0 ||
-        replaceStr.length == 0) {
-        return string;
-    }
-    
-    NSRegularExpression *regularExpretion =
-    [NSRegularExpression regularExpressionWithPattern:regexStr
-                                              options:0
-                                                error:nil];
-    string = [regularExpretion
-              stringByReplacingMatchesInString:string
-              options:NSMatchingReportProgress
-              range:NSMakeRange(0, string.length)
-              withTemplate:replaceStr];
-    
-    return string;
 }
 
 /// 随机图片
@@ -281,8 +217,10 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 - (NSDictionary *)makeDictionaryWithResultURL:(NSString *)urlString preStr:(NSString *)preStr {
     NSString *result =
     [urlString stringByReplacingOccurrencesOfString:preStr withString:@" "];
-    NSString *jsonString = [result
-                            stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSString *jsonString = [result
+//                            stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSString *jsonString = [result stringByRemovingPercentEncoding];
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     NSError *err;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData
@@ -294,97 +232,79 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 #pragma mark 键盘监听
 
 - (void)keyBoardWillShowFrame:(NSNotification *)notification {
-//    self.fontBar.hidden = NO;
-//    self.toolBarView.hidden = NO;
     [YXUserDefaults setBool:YES forKey:@"YXKeyboardIsVisible"];
-
-    //重新定位光标位置
-//    WS(weakSelf)
-//    [self.myWebView getCaretYPositionHandler:^(NSString *numStr) {
-//        UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
-//        UIView *firstResponder = [keyWindow performSelector:@selector(firstResponder)];
-//
-//        if ([firstResponder isKindOfClass:[UITextField class]]) {
-//            return;
-//        }
-//        CGFloat num = [numStr floatValue];
-//        CGFloat editKeyboardH = [weakSelf editKeyboardHeight];
-//        NSLog(@"***********************:%.f", num);
-//        [weakSelf.myWebView autoScrollTop:num - editKeyboardH];
-//    }];
 }
 
 - (void)keyBoardWillHideFrame:(NSNotification *)notification {
     self.myWebView.accessoryView.fontBtn.selected = NO;
     self.fontBar.hidden = YES;
-
-//    self.toolBarView.hidden = YES;
+    
     [YXUserDefaults setBool:NO forKey:@"YXKeyboardIsVisible"];
 }
 
-- (void)keyBoardWillChangeFrame:(NSNotification *)notification {
-    CGRect frame =
-    [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    if (self.keyboardHeight < 10) {
-        self.keyboardHeight = frame.size.height;
-    }
-    
-    CGFloat duration =
-    [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]
-     doubleValue];
-    if (frame.origin.y == SCREEN_HEIGHT) {
-        [UIView animateWithDuration:duration
-                         animations:^{
-                             self.toolBarView.transform = CGAffineTransformIdentity;
-                             self.toolBarView.keyboardBtn.selected = NO;
-                         }];
-    } else {
-        [UIView
-         animateWithDuration:duration
-         animations:^{
-             self.toolBarView.transform =
-             CGAffineTransformMakeTranslation(0, -frame.size.height);
-             self.toolBarView.keyboardBtn.selected = YES;
-             
-         }];
-    }
-}
+//- (void)keyBoardWillChangeFrame:(NSNotification *)notification {
+//    CGRect frame =
+//    [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+//    if (self.keyboardHeight < 10) {
+//        self.keyboardHeight = frame.size.height;
+//    }
+//
+//    CGFloat duration =
+//    [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey]
+//     doubleValue];
+//    if (frame.origin.y == SCREEN_HEIGHT) {
+//        [UIView animateWithDuration:duration
+//                         animations:^{
+//                             self.toolBarView.transform = CGAffineTransformIdentity;
+//                             self.toolBarView.keyboardBtn.selected = NO;
+//                         }];
+//    } else {
+//        [UIView
+//         animateWithDuration:duration
+//         animations:^{
+//             self.toolBarView.transform =
+//             CGAffineTransformMakeTranslation(0, -frame.size.height);
+//             self.toolBarView.keyboardBtn.selected = YES;
+//
+//         }];
+//    }
+//}
 
-/// 添加KVO 设置fontbar的位置
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSString *, id> *)change
-                       context:(void *)context {
-    if ([keyPath isEqualToString:@"transform"]) {
-        CGRect fontBarFrame = self.fontBar.frame;
-        fontBarFrame.origin.y = CGRectGetMaxY(self.toolBarView.frame) -
-        YXFontBar_Height - YXEditorBar_Height;
-        self.fontBar.frame = fontBarFrame;
-    } else {
-        [super observeValueForKeyPath:keyPath
-                             ofObject:object
-                               change:change
-                              context:context];
-    }
-}
+///// 添加KVO 设置fontbar的位置
+//- (void)observeValueForKeyPath:(NSString *)keyPath
+//                      ofObject:(id)object
+//                        change:(NSDictionary<NSString *, id> *)change
+//                       context:(void *)context {
+//    if ([keyPath isEqualToString:@"transform"]) {
+//        CGRect fontBarFrame = self.fontBar.frame;
+//        fontBarFrame.origin.y = CGRectGetMaxY(self.toolBarView.frame) -
+//        YXFontBar_Height - YXEditorBar_Height;
+//        self.fontBar.frame = fontBarFrame;
+//    } else {
+//        [super observeValueForKeyPath:keyPath
+//                             ofObject:object
+//                               change:change
+//                              context:context];
+//    }
+//}
 
 #pragma mark webView监听处理事件
 
-- (void)handleEvent:(NSString *)urlString {
-    if ([urlString hasPrefix:@"re-state-content://"]) {
-//        WS(weakSelf)
-//        [self.myWebView contentTextHandler:^(NSString *textStr) {
-//            if (textStr.length <= 0) {
-//                [weakSelf.myWebView.scrollView setContentOffset:CGPointMake(0, YXEditHeaderViewH) animated:YES];
-//            }
-//        }];
-    }
-    
-    if ([urlString hasPrefix:@"re-state-title://"]) {
-        self.fontBar.hidden = YES;
-        self.toolBarView.hidden = YES;
-    }
-}
+//- (void)handleEvent:(NSString *)urlString {
+//    if ([urlString hasPrefix:@"re-state-content://"]) {
+////        WS(weakSelf)
+////        [self.myWebView contentTextHandler:^(NSString *textStr) {
+////            if (textStr.length <= 0) {
+////                [weakSelf.myWebView.scrollView setContentOffset:CGPointMake(0, YXEditHeaderViewH) animated:YES];
+////            }
+////        }];
+//    }
+//
+//    if ([urlString hasPrefix:@"re-state-title://"]) {
+//        self.fontBar.hidden = YES;
+//        self.toolBarView.hidden = YES;
+//    }
+//}
 
 /**
  *  删除视频拦截
@@ -581,34 +501,6 @@ UIAlertViewDelegate,UIScrollViewDelegate>
             CGFloat num = [numStr floatValue];
             [weakSelf.myWebView autoScrollTop:num];
         }];
-        
-//        [weakSelf.myWebView reload];
-            //                }];        }
-        /*
-        [[WGUploadFileTool alloc] upLoadFileModels:[weakSelf.uploadArr copy] Callback:^(NSString * _Nonnull key, float percent, id  _Nullable obj, NSError * _Nullable error) {
-            
-            WGUploadFileModel *fileM = [weakSelf fileModelWithKey:key];
-            if (percent < 1) {
-                //正在上传
-                [weakSelf.webView insetImageKey:fileM.key progress:percent];
-            }else{
-                [weakSelf.webView setupContentDisable:true];
-//                if (obj) {
-//                    //上传成功
-//                    fileM.state = WGUploadFileStateSuccess;
-//                    NSString *testUrl = @"https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=210671490,1554278141&fm=173&app=25&f=JPEG?w=638&h=445&s=9C366790E4892B4F26293C810300A088";
-//                    [weakSelf successWithKey:fileM.key url:testUrl];
-//                }else{
-                    //上传失败
-                    fileM.state = WGUploadFileStateError;
-                    [weakSelf.webView uploadErrorKey:fileM.key];
-//                }
-                
-            }
-            
-        }];
-         */
-        
     }];
          
     [self presentViewController:imagePicker animated:YES completion:nil];
@@ -637,7 +529,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     NSString *urlString = navigationAction.request.URL.absoluteString;
     NSLog(@"loadURL = %@", urlString);
     
-    [self handleEvent:urlString];
+//    [self handleEvent:urlString];
     
     if ([urlString rangeOfString:@"re-state-content://"].location != NSNotFound) {
         NSString *className =
@@ -651,7 +543,7 @@ UIAlertViewDelegate,UIScrollViewDelegate>
             if (str.length <= 0) {
                 [weakSelf.myWebView showContentPlaceholder];
                 [self.myWebView contentHtmlTextHandler:^(NSString *htmlStr) {
-                    if ([weakSelf getImgTags:htmlStr].count > 0) {
+                    if ([YXHtmlEditTool getImgTags:htmlStr].count > 0) {
                         [weakSelf.myWebView clearContentPlaceholder];
                     }
                 }];
@@ -689,16 +581,6 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     // 设置WKWebview的header和footer
     [self.myWebView setupFooterViewForWebView:(YXWKWebView *)webView];
 
-//    [webView
-//     setupHtmlContent:@"<p>添加测试呢</p><br/>"
-//     @"<imgsrc=\"https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/"
-//     @"u=4278445236,4070967445&amp;fm=173&amp;app=25&amp;f="
-//     @"JPEG?w=218&amp;h=146&amp;s="
-//     @"B1145A915E28110D18B9A940030080B2\"><br /><br /><img "
-//     @"src=\"http://h.hiphotos.baidu.com/image/pic/item/"
-//     @"cefc1e178a82b901fd40c8077d8da9773912ef11.jpg\"><p>"
-//     @"让人</p>"];
-
     //修改占位符
     [self.myWebView changePlaceholder:@"请输入内容"];
     
@@ -723,37 +605,11 @@ UIAlertViewDelegate,UIScrollViewDelegate>
     }
 }
 
-//- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error {
-//    NSLog(@"NSError = %@", error);
-//
-//    if ([error code] == NSURLErrorCancelled) {
-//        return;
-//    }
-//}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView.contentOffset.y <= -YXEditHeaderViewH) {
         scrollView.contentOffset = CGPointMake(0, -YXEditHeaderViewH);
     }
-
-//    NSLog(@"scrollView.contentOffset.y :%.f", scrollView.contentOffset.y );
 }
-
-///**
-// *  是否显示占位文字
-// */
-//- (void)isShowPlaceholder {
-//    WS(weakSelf)
-//    [self.myWebView contentTextHandler:^(NSString *textStr) {
-//        if (textStr.length <= 0) {
-//            [weakSelf.myWebView showContentPlaceholder];
-//        }else {
-//            [weakSelf.myWebView clearContentPlaceholder];
-//        }
-//    }];
-//
-//}
-
 
 #pragma mark - 编辑bar的Delegate
 
@@ -766,8 +622,6 @@ UIAlertViewDelegate,UIScrollViewDelegate>
         } break;
         case 1: {// 添加视频
             [self addVideoMethod];
-            //回退
-//            [self.myWebView evaluateJavaScript:@"document.execCommand('undo')" completionHandler:nil];
 
         } break;
         case 2: {// 添加emoji
@@ -780,10 +634,11 @@ UIAlertViewDelegate,UIScrollViewDelegate>
                 self.myWebView.showEmojiKeyboard = YES;
                 [editorBar.emojiBtn setImage:[UIImage imageNamed:@"btn_chat_input_keyborad"] forState:UIControlStateNormal];
             }
-            [self.myWebView.inputView reloadInputViews];
-//            [self.myWebView.inputView becomeFirstResponder];
-            
-//            [self.myWebView evaluateJavaScript:@"document.execCommand('redo')" completionHandler:nil];
+//            UIWindow *keyWindow = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
+//            UIView *firstResponder = [keyWindow performSelector:@selector(firstResponder)];
+//            [firstResponder reloadInputViews];
+            // WKContentView
+            [self.myWebView.subviews[0].subviews[0] reloadInputViews];
 
         } break;
         case 3: {
@@ -792,18 +647,14 @@ UIAlertViewDelegate,UIScrollViewDelegate>
             if (editorBar.fontBtn.selected) {
                 CGRect barframe = [editorBar convertRect:editorBar.frame toView:self.view];
                 self.fontBar.frame = CGRectMake(barframe.origin.x, barframe.origin.y-self.fontBar.height, barframe.size.width, self.fontBar.height);
-//                [self.view addSubview:self.fontBar];
                 self.fontBar.hidden = NO;
             } else {
-//                [self.fontBar removeFromSuperview];
                 self.fontBar.hidden = YES;
             }
         } break;
         case 4: {//超链接
             [self hyperLink];            
-            //插入地址
-            //[self.myWebView insertLinkUrl:@"https://www.baidu.com/" title:@"百度"
-            //content:@"百度一下"];
+
         } break;
         case 5: {
             
@@ -813,12 +664,10 @@ UIAlertViewDelegate,UIScrollViewDelegate>
                 dispatch_after(
                                dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)),
                                dispatch_get_main_queue(), ^{
-//                                   [self showPhotos];
                     [self showPhotoPicker];
 
                                });
             } else {
-//                [self showPhotos];
                 [self showPhotoPicker];
             }
         } break;
@@ -833,8 +682,6 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 - (void)hyperLink {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"添加链接" message:@"请输入链接名称和地址" preferredStyle:UIAlertControllerStyleAlert];
-    //以下方法就可以实现在提示框中输入文本；
-    
     //在AlertView中添加一个输入框
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
         
@@ -984,31 +831,12 @@ UIAlertViewDelegate,UIScrollViewDelegate>
 //         options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
 //         context:nil];
         _myWebView.scrollView.delegate = self;
+
         
     }
     return _myWebView;
 }
 
-- (YXEmojiInputView *)emojiKeyboard {
-    if (_emojiKeyboard == nil) {
-        _emojiKeyboard = [[YXEmojiInputView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, 230)];
-    }
-    return _emojiKeyboard;
-}
-
-//- (TZImagePickerController *)imagePickerVc{
-//    if (_imagePickerVc == nil) {
-//        _imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:nil];
-//        _imagePickerVc.showSelectBtn = NO;
-//    }
-//    return _imagePickerVc;
-//}
 
 @end
 
-
-/**
- 1、输入时 scrollView 随输入文案改变
- 3、视频的添加
- 
- */

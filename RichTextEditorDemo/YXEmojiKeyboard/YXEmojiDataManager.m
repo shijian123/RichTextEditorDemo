@@ -19,7 +19,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shareObj = [[YXEmojiDataManager alloc] init];
-        shareObj.currentPackage = 1;
+        shareObj.currentPackage = 0;
     });
     return shareObj;
 }

@@ -30,6 +30,11 @@
     _myTabbarCollV.dataSource = self;
     [_myTabbarCollV registerNib:[UINib nibWithNibName:@"YXEmojiViewCell" bundle:nil] forCellWithReuseIdentifier:@"YXEmojiViewCellID"];
 }
+- (IBAction)deleteEmojiAction:(id)sender {
+    if (self.clickDeleteEmojiBlock) {
+        self.clickDeleteEmojiBlock();
+    }
+}
 
 /// 获取表情包封面图片
 - (NSString *)groupCoverImg:(YXEmojiGroupModel *)groupModel {
@@ -42,7 +47,15 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     YXEmojiViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"YXEmojiViewCellID" forIndexPath:indexPath];
     YXEmojiGroupModel *model = [YXEmojiDataManager manager].emojiPackages[indexPath.row];
+    cell.itemLeading.constant = model.isLargeEmoji?0:5;
+    cell.itemTop.constant = model.isLargeEmoji?0:5;
+
     cell.itemImgV.image = [UIImage imageNamed:[self groupCoverImg:model]];
+    if (indexPath.row == [YXEmojiDataManager manager].currentPackage) {
+        cell.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0];
+    }else{
+        cell.backgroundColor = [UIColor clearColor];
+    }
     return cell;
 }
 
@@ -51,7 +64,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(60, 40);
+    return CGSizeMake(60, self.height-5);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -59,6 +72,7 @@
     if (self.clickEmojiPackageBlock) {
         [YXEmojiDataManager manager].currentPackage = indexPath.row;
         self.clickEmojiPackageBlock(indexPath.row);
+        [collectionView reloadData];
     }
 }
 

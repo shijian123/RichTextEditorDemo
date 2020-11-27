@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WKWebView (YXHideAccessoryView)
 @property (nonatomic, assign) BOOL hidesInputAccessoryView;
+- (void)myContentView;
 
 @end
 

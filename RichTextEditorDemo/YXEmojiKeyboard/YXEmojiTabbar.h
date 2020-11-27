@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface YXEmojiTabbar : UIView
 @property (nonatomic) void(^clickEmojiPackageBlock)(NSInteger index);
+@property (nonatomic) void(^clickDeleteEmojiBlock)(void);
 
 @end
 

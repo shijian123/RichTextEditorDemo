@@ -6,6 +6,7 @@
 //
 
 #import "YXWKWebView.h"
+#import "WKWebView+YXWebViewJSTool.h"
 
 @interface YXWKWebView ()<WKNavigationDelegate>{
     BOOL alreadyShowHeader;
@@ -105,7 +106,24 @@
 
 - (YXEmojiInputView *)emojiInputView {
     if (_emojiInputView == nil) {
-        _emojiInputView = [[YXEmojiInputView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, 230)];
+        
+        _emojiInputView = [[YXEmojiInputView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, 270+SCREEN_B_0)];
+        // 添加表情
+        YXWeakSelf
+        _emojiInputView.clickEmojiItemBlock = ^(YXEmojiItemModel * _Nonnull model) {
+            
+            NSString *html;
+            if (model.isLargeEmoji) {
+                html = [NSString stringWithFormat:@"<img class='localEmojiImage' height = '60' width = '60' alt='%@' src='file://%@'/>", model.desc, model.imagePath];
+            }else {
+                html = [NSString stringWithFormat:@"<img class='localEmojiImage' height = '30' width = '30' alt='%@' src='file://%@'/>", model.desc, model.imagePath];
+            }
+            [weakSelf insertHTML:html];
+        };
+        _emojiInputView.clickDeleteEmojiBlock = ^{
+            // 调用WKContentView
+            [weakSelf.subviews[0].subviews[0] deleteBackward];
+        };
     }
     return _emojiInputView;
 }

@@ -6,7 +6,7 @@
 //
 
 #import "YXEmojiModel.h"
-#import "YXEmojiGifImage.h"
+#import "SDAnimatedImage.h"
 
 @implementation YXEmojiItemModel
 
@@ -40,8 +40,13 @@
             NSString *imagePath = [sourcePath stringByAppendingPathComponent:emojiDict[@"image"]];
             emoji.imageName = emojiDict[@"image"];
             emoji.desc = emojiDict[@"desc"];
+            emoji.imagePath = imagePath;
+            emoji.folderName = self.folderName;
+            emoji.isLargeEmoji = self.isLargeEmoji;
             emoji.image = [UIImage imageWithContentsOfFile:imagePath];
-            emoji.gifImage = [YXEmojiGifImage imageWithContentsOfFile:imagePath];
+            if (self.isLargeEmoji) {
+                emoji.gifImage = [SDAnimatedImage imageWithContentsOfFile:imagePath];
+            }
             [arrM addObject:emoji];
         }
         self.emojis = arrM;

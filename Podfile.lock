@@ -1,24 +1,30 @@
 PODS:
   - IQKeyboardManager (6.5.6)
   - MBProgressHUD (1.2.0)
+  - SDWebImage (5.9.4):
+    - SDWebImage/Core (= 5.9.4)
+  - SDWebImage/Core (5.9.4)
   - TZImagePickerController (3.5.2)
 
 DEPENDENCIES:
   - IQKeyboardManager
   - MBProgressHUD
+  - SDWebImage (~> 5.9.4)
   - TZImagePickerController
 
 SPEC REPOS:
   trunk:
     - IQKeyboardManager
     - MBProgressHUD
+    - SDWebImage
     - TZImagePickerController
 
 SPEC CHECKSUMS:
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  SDWebImage: b69257f4ab14e9b6a2ef53e910fdf914d8f757c1
   TZImagePickerController: f1e4ed5ca1ddfc7e48d20867ff6a5c1e41a4b579
 
-PODFILE CHECKSUM: fa96d4685f077c8bff9ff851924af16483fe04e9
+PODFILE CHECKSUM: 014b2be8fe0c4f1c4e6a51ce870f6445228c889c
 
 COCOAPODS: 1.10.0

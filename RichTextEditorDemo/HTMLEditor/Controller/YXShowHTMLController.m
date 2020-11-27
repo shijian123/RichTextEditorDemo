@@ -7,6 +7,7 @@
 
 #import "YXShowHTMLController.h"
 #import <WebKit/WebKit.h>
+
 @interface YXShowHTMLController ()
 @property (nonatomic, strong) WKWebView *myWebView;
 
@@ -18,13 +19,31 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.myWebView];
-//    NSString *headerStr = @"<header><meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'><style>img{max-width:100%}</style>  <title>XHTML Tag Reference</title></header>";
-//    [self.myWebView loadHTMLString:[NSString stringWithFormat:@"%@%@", headerStr, self.htmlStr] baseURL:nil];
-    
-    NSLog(@"self.htmlStr:%@",self.htmlStr);
-    [self.myWebView loadHTMLString:self.htmlStr baseURL:nil];
 
+    NSLog(@"self.htmlStr:%@", self.htmlStr);
+    
+    [self insertHtmlSting:self.htmlStr];
 }
+
+#pragma mark - Method
+
+/// 使用本地css加载html
+- (void)insertHtmlSting:(NSString *)html{
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSURL *baseURL = [NSURL fileURLWithPath:path];
+    NSString *htmlPath = [[NSBundle mainBundle] pathForResource:@"showRichText" ofType:@"html"];
+    NSString *htmlCont = [NSString stringWithContentsOfFile:htmlPath
+                                                   encoding:NSUTF8StringEncoding
+                                                      error:nil];
+    NSMutableArray *arr = [NSMutableArray arrayWithArray:[htmlCont componentsSeparatedByString:@"<body>"]];
+    if (arr.count > 1) {
+        [arr insertObject:[NSString stringWithFormat:@"<div id='article_content'>%@</div>", self.htmlStr] atIndex:1];
+    }
+    htmlCont = [arr componentsJoinedByString:@""];
+    [_myWebView loadHTMLString:htmlCont baseURL:baseURL];
+}
+
+#pragma mark - setter&&getter
 
 - (WKWebView *)myWebView {
     if (_myWebView == nil) {

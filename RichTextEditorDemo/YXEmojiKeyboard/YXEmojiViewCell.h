@@ -6,11 +6,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SDAnimatedImageView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface YXEmojiViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *itemImgV;
+@property (weak, nonatomic) IBOutlet SDAnimatedImageView *itemImgV;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *itemLeading;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *itemTop;
 
 @end
 

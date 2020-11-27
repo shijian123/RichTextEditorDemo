@@ -10,6 +10,8 @@
 
 #import "UIView+YX.h"
 #import "MBProgressHUD+YX.h"
+#import "YXHtmlEditTool.h"
+
 
 
 #define YXUserDefaults [NSUserDefaults standardUserDefaults]
@@ -17,6 +19,15 @@
 #define MainScreenSize [UIScreen mainScreen].bounds.size
 #define MainScreenWidth MainScreenSize.width
 #define MainScreenHeight MainScreenSize.height
+
+#define IS_IPhoneX \
+({BOOL isPhoneX = NO;\
+if (@available(iOS 11.0, *)) {\
+isPhoneX = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom > 0.0;\
+}\
+(isPhoneX);})
+//距离底部
+#define SCREEN_B_0 (IS_IPhoneX ? 34 : 0)
 
 // 弱引用
 #define YXWeakSelf __weak typeof(self) weakSelf = self;
